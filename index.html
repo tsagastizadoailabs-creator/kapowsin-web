@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kapowsin AI — For Real Estate Professionals</title>
+  <meta name="description" content="The AI Chief of Staff for Real Estate Professionals. From curious to covered, on your timeline. Serving the Pacific Northwest." />
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body style="margin:0;padding:0;background:#0a0e1a;">
+  <div id="root"></div>
+  <script type="text/babel">
+const { useState } = React;
+
+
+const CAL_DISCOVERY_LINK = "https://cal.com/thekapowsincompany/discovery";
+const CONTACT_EMAIL = "info@thekapowsincompany.com";
+
+const palette = {
+  bg: "#0a0e1a",
+  bgCard: "#0f1525",
+  bgCardHover: "#141b2e",
+  bgSurface: "#1a2236",
+  bgSurfaceLight: "#212b42",
+  border: "#1f2942",
+  borderActive: "#2dd4bf",
+  text: "#e7ecf5",
+  textMuted: "#94a3b8",
+  textDim: "#64748b",
+  textFaint: "#475569",
+  teal: "#2dd4bf",
+  tealSoft: "rgba(45, 212, 191, 0.12)",
+  tealDeep: "rgba(45, 212, 191, 0.25)",
+  cyan: "#22d3ee",
+  cyanSoft: "rgba(34, 211, 238, 0.10)",
+  amber: "#f59e0b",
+  amberSoft: "rgba(245, 158, 11, 0.10)",
+  rose: "#fb7185",
+  roseSoft: "rgba(251, 113, 133, 0.10)",
+  purple: "#a78bfa",
+  purpleSoft: "rgba(167, 139, 250, 0.10)",
+  green: "#4ade80",
+  greenSoft: "rgba(74, 222, 128, 0.10)",
+};
+
+const fontDisplay = `"Fraunces", "Hoefler Text", Georgia, serif`;
+const fontBody = `"Inter Tight", "Helvetica Neue", system-ui, sans-serif`;
+const fontMono = `"JetBrains Mono", "SF Mono", monospace`;
+
+const SectionLabel = ({ children, color = palette.teal }) => (
+  <div
+    style={{
+      fontSize: 10,
+      fontFamily: fontMono,
+      letterSpacing: "0.2em",
+      textTransform: "uppercase",
+      color,
+      marginBottom: 12,
+    }}
+  >
+    {children}
+  </div>
+);
+
+const Pill = ({ children, color = palette.teal, bg = palette.tealSoft }) => (
+  <span
+    style={{
+      display: "inline-block",
+      fontSize: 10,
+      fontFamily: fontMono,
+      letterSpacing: "0.08em",
+      textTransform: "uppercase",
+      color,
+      background: bg,
+      padding: "3px 10px",
+      borderRadius: 4,
+      border: `1px solid ${color}33`,
+    }}
+  >
+    {children}
+  </span>
+);
+
+const journey = [
+  {
+    id: "explore",
+    step: "01",
+    name: "Explore",
+    subtitle: "Free, low-commitment",
+    color: palette.cyan,
+    colorSoft: palette.cyanSoft,
+    duration: "30-60 min",
+    cost: "Free",
+    valueLine: "See what AI can actually do for an agent like you — no sales pressure.",
+    options: [
+      {
+        name: "Lunch & Learn",
+        format: "30-min office workshop",
+        what: "Tony brings lunch. Live demo of a morning briefing, hot-lead alert, and weekly follow-up system. Open Q&A. You leave with three workflows you can try the same afternoon.",
+        forWho: "Brokerage offices, REIA meetings, and team leaders who want their agents exposed to AI without making them sit through a webinar.",
+      },
+      {
+        name: "Discovery Call",
+        format: "20-min one-on-one",
+        what: "Direct conversation about your business, your tools, and your goals. We listen more than we talk. By the end you'll know whether AI is right for you right now — and if so, which path fits.",
+        forWho: "Solo agents, team leads, or brokers ready to explore but not committed.",
+      },
+    ],
+    next: "Most explorers move to Step 2 within 30 days.",
+  },
+  {
+    id: "assess",
+    step: "02",
+    name: "Assess",
+    subtitle: "Paid, vendor-neutral",
+    color: palette.amber,
+    colorSoft: palette.amberSoft,
+    duration: "2-4 weeks",
+    cost: "$1,497 - $4,997",
+    valueLine: "Get a written, vendor-neutral roadmap of where AI fits your specific business.",
+    options: [
+      {
+        name: "Solo Agent Audit",
+        format: "1-2 agents · 2 weeks",
+        what: "Discovery call (60 min) + 5-7 page written report covering current state, top 3 AI opportunities ranked by ROI, vendor-neutral tool recommendations, 30/90/180-day roadmap, and the things you should NOT invest in. Plus a 30-min review call and 30 days of email support.",
+        forWho: "Solo agents, independent practitioners.",
+      },
+      {
+        name: "Team Audit",
+        format: "3-9 agents · 3 weeks",
+        what: "Everything in the Solo Audit, plus team interviews and shared workflow mapping. Top 4-5 opportunities. Recommendations include team coordination AI in addition to individual workflows.",
+        forWho: "Small teams of 3-9 agents.",
+      },
+      {
+        name: "Brokerage Audit",
+        format: "10+ agents · 4 weeks",
+        what: "Multiple stakeholder interviews, broker-level strategy review, and a brokerage-wide implementation roadmap. Top 4-5 opportunities at both the individual and team level.",
+        forWho: "Brokerages with 10 or more agents.",
+      },
+    ],
+    pricing: [
+      { label: "Solo", value: "$1,497" },
+      { label: "Team", value: "$2,997" },
+      { label: "Brokerage", value: "$4,997" },
+    ],
+    guarantees: [
+      "Vendor-neutral — we'll tell you when our own product isn't the answer",
+      "Section explicitly listing what NOT to invest in",
+      "30-day full refund if recommendations aren't actionable",
+      "Audit fee credits toward subscription if you start within 60 days",
+    ],
+    next: "30-50% of audit clients subscribe to the Chief of Staff. The rest implement on their own — that's a win too.",
+  },
+  {
+    id: "build",
+    step: "03",
+    name: "Build",
+    subtitle: "Recurring, white-glove, dedicated infrastructure",
+    color: palette.teal,
+    colorSoft: palette.tealSoft,
+    duration: "5-10 days from contract",
+    cost: "$497 - $1,497/mo",
+    valueLine: "Working AI agents on YOUR own server, doing the work you don't have time for.",
+    options: [
+      {
+        name: "Starter",
+        format: "$1,500 setup + $497/month",
+        what: "Lead Response Agent (3-min response, 24/7) · Voice interface via Telegram · 1 social platform with 3 posts/week · Monthly performance report · Email support.",
+        forWho: "Solo agents, modest tech needs, 30-50 leads per month.",
+      },
+      {
+        name: "Growth",
+        format: "$2,500 setup + $997/month",
+        what: "Everything in Starter, plus the Social Media Agent on 3 platforms with daily posting · Weekly Touch-Plan agent (Monday Google Doc with action items per active client) · AI content creation (1 blog + 1 newsletter weekly) · AI calendar booking · Quarterly strategy review.",
+        forWho: "Active agents and small teams. The sweet spot for most clients.",
+      },
+      {
+        name: "Pro",
+        format: "$5,000 setup + $1,497/month",
+        what: "Everything in Growth, plus video content support across all social platforms · Listing Presentation Agent (auto-generated branded PDFs from MLS data) · Monthly market reports for your geographic focus · Up to 2 custom workflow integrations per quarter · Priority support with 4-hour response SLA · Dedicated 60-min quarterly strategy reviews.",
+        forWho: "Top producers and established teams.",
+      },
+    ],
+    pricing: [
+      { label: "Starter", value: "$497/mo" },
+      { label: "Growth", value: "$997/mo" },
+      { label: "Pro", value: "$1,497/mo" },
+    ],
+    infrastructureNote: true,
+    note:
+      "Your AI runs on your own dedicated server, provisioned and managed by Kapowsin. Your data never shares infrastructure with another client's.",
+    next: "Most clients add Lead Generation or Voice services within 90 days.",
+  },
+  {
+    id: "scale",
+    step: "04",
+    name: "Scale",
+    subtitle: "Add-ons that compound",
+    color: palette.purple,
+    colorSoft: palette.purpleSoft,
+    duration: "Month-to-month, anytime",
+    cost: "$150 - $497/mo each",
+    valueLine: "Add capability as you grow. The Chief of Staff orchestrates everything in one system.",
+    options: [
+      {
+        name: "AI Lead Generation",
+        format: "$297-$497/month",
+        what: "AI-generated landing pages (3/month). Automated 5-day nurture sequences for new leads. Open house QR codes with instant follow-up. Lead source attribution and routing. Monthly performance dashboard.",
+        forWho: "Active subscribers ready to expand top-of-funnel. Available Q3 2026.",
+      },
+      {
+        name: "AI Voice Phone Agent",
+        format: "$150/month",
+        what: "Inbound caller speaks to your AI in your voice (or a professional default). The AI captures lead info, books appointments on your calendar, and texts you a summary in real time. While you're showing, in a meeting, or asleep.",
+        forWho: "Any agent who misses calls because they're with clients. Available in Q3 2026.",
+      },
+      {
+        name: "Custom Workflows (Pro tier only)",
+        format: "Included in Pro · 1-2 per quarter",
+        what: "Have a workflow that's specific to your business and not covered by the standard agents? We'll build it. Common examples: investor deal flow tracking, recruiting funnels for team builds, brokerage agent onboarding sequences.",
+        forWho: "Pro tier subscribers with bespoke needs.",
+      },
+    ],
+    next: "Existing clients refer 1-2 prospects a year on average — that's how the cycle continues.",
+  },
+];
+
+const compareItems = [
+  {
+    you: "Most agents lose leads because response time is slow.",
+    us: "Lead Response Agent ensures every new lead gets a personalized, on-brand response within 3 minutes — even at 2 AM.",
+  },
+  {
+    you: "Most social media is sporadic, abandoned after 6 weeks.",
+    us: "Social Media Agent posts daily across platforms with content you approve from your phone in 30 seconds per post.",
+  },
+  {
+    you: "Most weekly follow-ups happen when you remember — which means inconsistently.",
+    us: "Weekly Touch-Plan Agent emails you a Monday morning Google Doc: who to follow up with, what to say, why, and through which channel.",
+  },
+  {
+    you: "Most listing presentations take 4-6 hours to prepare per listing.",
+    us: "Listing Presentation Agent generates branded PDFs from MLS data in under 5 minutes (Pro tier).",
+  },
+  {
+    you: "Most agents have no system for missed calls during showings.",
+    us: "AI Voice Phone Agent answers calls in your voice, captures the lead, and books appointments on your calendar.",
+  },
+  {
+    you: "Most AI services multi-tenant your data alongside other clients' data.",
+    us: "Your AI runs on a dedicated server provisioned for you alone. Your data never crosses paths with another client's.",
+  },
+];
+
+const guarantees = [
+  {
+    title: "Your own dedicated server",
+    body: "Every subscription includes a Hetzner VPS provisioned just for you. Your contacts, conversations, and AI configurations never share infrastructure with another client. If you ever leave us, the server (and its data) is yours.",
+  },
+  {
+    title: "Transparent infrastructure pricing",
+    body: "We don't hide infrastructure costs in markups. You see your actual monthly server cost (~$25-30) and your actual LLM API usage (typically $40-300/month depending on tier and usage), billed at our cost. No surprises, no opaque margin.",
+  },
+  {
+    title: "Vendor-neutral assessment",
+    body: "When you buy an Audit, we'll tell you when our own product isn't the right answer. If a free tool solves your problem, that's what the audit recommends. Honesty is the differentiator.",
+  },
+  {
+    title: "30-day audit refund guarantee",
+    body: "If the audit recommendations aren't actionable for your business, full refund within 30 days of delivery. We've never had to issue one — but the policy is real.",
+  },
+  {
+    title: "Audit fee credits toward subscription",
+    body: "Your audit fee credits 100% toward your first month of any subscription tier, as long as you sign up within 60 days of audit delivery.",
+  },
+  {
+    title: "Your data stays where it is",
+    body: "Your data stays where it is. We connect to your existing tools via API and add AI on top without disrupting what you've already built.",
+  },
+  {
+    title: "30-day cancellation, anytime",
+    body: "After your first month, you can cancel any subscription with 30 days' notice. No multi-year contracts. No early termination fees. We export your data and shut down your server cleanly.",
+  },
+  {
+    title: "Real estate veteran in your corner",
+    body: "Tony Sagastizado delivers every audit personally. 20-year US Army Engineer Officer. Eagle Scout. Deployed with Special Forces. Military Advisor to Saudi Generals. He builds systems that work under pressure — this is the same thing, applied to your business. This isn't outsourced consulting.",
+  },
+];
+
+const InfrastructureBox = ({ color, colorSoft }) => (
+  <div
+    style={{
+      padding: "20px 22px",
+      background: colorSoft,
+      borderLeft: `2px solid ${color}`,
+      borderRadius: "0 10px 10px 0",
+      marginBottom: 20,
+    }}
+  >
+    <SectionLabel color={color}>What's included AND what's billed at cost</SectionLabel>
+    <p style={{ fontSize: 13, color: palette.text, lineHeight: 1.65, margin: "0 0 14px 0" }}>
+      Every subscription includes <strong style={{ color: color, fontWeight: 500 }}>your own dedicated Hetzner VPS</strong> provisioned at signup, plus all our agent configuration, integration, and ongoing operation. Two cost categories are billed at our actual cost as monthly line items, with no markup:
+    </p>
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 12 }}>
+      <div style={{ background: palette.bgSurface, padding: "12px 14px", borderRadius: 6, border: `1px solid ${palette.border}` }}>
+        <div style={{ fontSize: 10, fontFamily: fontMono, color: palette.textDim, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 6 }}>
+          Hetzner VPS
+        </div>
+        <div style={{ fontSize: 16, fontFamily: fontDisplay, color: palette.text, marginBottom: 4 }}>
+          ~$25-30/mo
+        </div>
+        <div style={{ fontSize: 11, color: palette.textMuted, lineHeight: 1.5 }}>
+          Predictable. CCX13 dedicated CPU baseline.
+        </div>
+      </div>
+      <div style={{ background: palette.bgSurface, padding: "12px 14px", borderRadius: 6, border: `1px solid ${palette.border}` }}>
+        <div style={{ fontSize: 10, fontFamily: fontMono, color: palette.textDim, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 6 }}>
+          LLM API usage
+        </div>
+        <div style={{ fontSize: 16, fontFamily: fontDisplay, color: palette.text, marginBottom: 4 }}>
+          $40-300/mo
+        </div>
+        <div style={{ fontSize: 11, color: palette.textMuted, lineHeight: 1.5 }}>
+          Variable by tier and usage. Multi-model swarm reduces cost.
+        </div>
+      </div>
+    </div>
+    <p style={{ fontSize: 12, color: palette.textMuted, lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>
+      Why we do it this way: keeping your AI on a dedicated server means your data never cross-pollinates with other clients, your agent doesn't slow down because someone else is running heavy queries, and your costs reflect your actual usage. Transparent passthrough infrastructure is how serious cloud consultancies bill — and we think you deserve the same clarity.
+    </p>
+  </div>
+);
+
+const Card = ({ stage, expanded, onToggle }) => {
+  const isOpen = expanded === stage.id;
+  return (
+    <div
+      onClick={() => onToggle(isOpen ? null : stage.id)}
+      style={{
+        background: palette.bgCard,
+        border: `1px solid ${isOpen ? stage.color + "55" : palette.border}`,
+        borderRadius: 14,
+        padding: "24px 26px",
+        cursor: "pointer",
+        transition: "border-color 220ms ease",
+        position: "relative",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 24, marginBottom: 16 }}>
+        <div
+          style={{
+            fontSize: 64,
+            fontFamily: fontDisplay,
+            fontWeight: 300,
+            color: stage.color,
+            lineHeight: 0.85,
+            letterSpacing: "-0.04em",
+            flexShrink: 0,
+            marginTop: -4,
+          }}
+        >
+          {stage.step}
+        </div>
+        <div style={{ flex: 1 }}>
+          <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 8, flexWrap: "wrap" }}>
+            <h2
+              style={{
+                fontSize: 32,
+                fontFamily: fontDisplay,
+                fontWeight: 400,
+                color: palette.text,
+                margin: 0,
+                letterSpacing: "-0.02em",
+                lineHeight: 1,
+              }}
+            >
+              {stage.name}
+            </h2>
+            <span style={{ fontSize: 13, color: stage.color, fontStyle: "italic", fontFamily: fontDisplay }}>
+              {stage.subtitle}
+            </span>
+          </div>
+          <div style={{ fontSize: 14, color: palette.textMuted, lineHeight: 1.55, marginBottom: 14, maxWidth: 600 }}>
+            {stage.valueLine}
+          </div>
+          <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+            <div style={{ fontSize: 11, fontFamily: fontMono, color: palette.textDim, letterSpacing: "0.06em" }}>
+              <span style={{ color: palette.textFaint, marginRight: 6 }}>TIME:</span>
+              {stage.duration}
+            </div>
+            <div style={{ fontSize: 11, fontFamily: fontMono, color: palette.textDim, letterSpacing: "0.06em" }}>
+              <span style={{ color: palette.textFaint, marginRight: 6 }}>INVESTMENT:</span>
+              {stage.cost}
+            </div>
+          </div>
+        </div>
+        <div
+          style={{
+            width: 32,
+            height: 32,
+            borderRadius: "50%",
+            border: `1px solid ${stage.color}55`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: stage.color,
+            fontSize: 16,
+            transform: isOpen ? "rotate(45deg)" : "rotate(0)",
+            transition: "transform 220ms ease",
+            flexShrink: 0,
+            marginTop: 4,
+          }}
+        >
+          +
+        </div>
+      </div>
+
+      {isOpen && (
+        <div style={{ paddingTop: 18, borderTop: `1px solid ${palette.border}` }}>
+          {stage.pricing && (
+            <div style={{ marginBottom: 24 }}>
+              <SectionLabel color={stage.color}>Pricing at a glance</SectionLabel>
+              <div style={{ display: "grid", gridTemplateColumns: `repeat(${stage.pricing.length}, 1fr)`, gap: 8 }}>
+                {stage.pricing.map((p, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      background: palette.bgSurface,
+                      border: `1px solid ${palette.border}`,
+                      borderRadius: 8,
+                      padding: "12px 14px",
+                    }}
+                  >
+                    <div style={{ fontSize: 10, fontFamily: fontMono, color: palette.textDim, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 4 }}>
+                      {p.label}
+                    </div>
+                    <div style={{ fontSize: 22, fontFamily: fontDisplay, fontWeight: 500, color: stage.color, letterSpacing: "-0.01em" }}>
+                      {p.value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {stage.infrastructureNote && (
+            <InfrastructureBox color={stage.color} colorSoft={stage.colorSoft} />
+          )}
+
+          <SectionLabel color={stage.color}>What's available at this step</SectionLabel>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 14, marginBottom: stage.guarantees ? 24 : (stage.note ? 20 : 18) }}>
+            {stage.options.map((opt, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: "16px 18px",
+                  background: palette.bgSurface,
+                  borderLeft: `2px solid ${stage.color}`,
+                  borderRadius: "0 8px 8px 0",
+                }}
+              >
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 8, gap: 12, flexWrap: "wrap" }}>
+                  <h3 style={{ fontSize: 18, fontFamily: fontDisplay, fontWeight: 500, color: palette.text, margin: 0, letterSpacing: "-0.01em" }}>
+                    {opt.name}
+                  </h3>
+                  <span style={{ fontSize: 11, fontFamily: fontMono, color: stage.color, letterSpacing: "0.04em" }}>
+                    {opt.format}
+                  </span>
+                </div>
+                <p style={{ fontSize: 13, color: palette.textMuted, lineHeight: 1.65, margin: "0 0 10px 0" }}>
+                  {opt.what}
+                </p>
+                <p style={{ fontSize: 11.5, color: palette.textDim, lineHeight: 1.55, margin: 0, fontStyle: "italic" }}>
+                  Best for: {opt.forWho}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {stage.note && (
+            <div
+              style={{
+                fontSize: 12.5,
+                color: palette.textMuted,
+                lineHeight: 1.65,
+                padding: "12px 16px",
+                background: stage.colorSoft,
+                borderRadius: 6,
+                marginBottom: stage.guarantees ? 20 : 18,
+              }}
+            >
+              <strong style={{ color: stage.color, fontWeight: 500 }}>Worth knowing: </strong>
+              {stage.note}
+            </div>
+          )}
+
+          {stage.guarantees && (
+            <div style={{ marginBottom: 18 }}>
+              <SectionLabel color={stage.color}>What's guaranteed</SectionLabel>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+                {stage.guarantees.map((g, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      fontSize: 12,
+                      color: palette.textMuted,
+                      display: "flex",
+                      gap: 10,
+                      alignItems: "flex-start",
+                      lineHeight: 1.55,
+                    }}
+                  >
+                    <span style={{ color: palette.green, marginTop: 1, flexShrink: 0, fontSize: 13 }}>✓</span>
+                    <span>{g}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div
+            style={{
+              fontSize: 12,
+              color: palette.textDim,
+              fontFamily: fontDisplay,
+              fontStyle: "italic",
+              padding: "10px 0 0 0",
+              borderTop: `1px solid ${palette.border}`,
+            }}
+          >
+            <span style={{ color: stage.color, marginRight: 8 }}>↓</span>
+            {stage.next}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default function KapowsinJourney() {
+  const [expanded, setExpanded] = useState("explore");
+  const [view, setView] = useState("journey");
+
+  const handleSeeAuditPricing = () => {
+    setView("journey");
+    setExpanded("assess");
+    setTimeout(() => {
+      const journeyEl = document.getElementById("journey-section");
+      if (journeyEl) journeyEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  };
+
+  return (
+    <div
+      style={{
+        background: palette.bg,
+        minHeight: "100vh",
+        fontFamily: fontBody,
+        color: palette.text,
+        padding: "32px 24px 60px",
+      }}
+    >
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+        a:hover { opacity: 0.85; }
+        button:hover { opacity: 0.9; }
+      `}</style>
+
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ marginBottom: 40 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
+            <div
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: palette.teal,
+                boxShadow: `0 0 12px ${palette.teal}aa`,
+              }}
+            />
+            <span
+              style={{
+                fontSize: 11,
+                fontFamily: fontMono,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: palette.teal,
+              }}
+            >
+              Kapowsin AI · For Real Estate Professionals
+            </span>
+          </div>
+
+          <h1
+            style={{
+              fontSize: 56,
+              fontFamily: fontDisplay,
+              fontWeight: 400,
+              lineHeight: 1.05,
+              letterSpacing: "-0.035em",
+              color: palette.text,
+              margin: "0 0 20px",
+              maxWidth: 880,
+            }}
+          >
+            From <span style={{ fontStyle: "italic", color: palette.teal }}>curious</span> to{" "}
+            <span style={{ fontStyle: "italic", color: palette.teal }}>covered</span>.
+            <br />
+            On your timeline.
+          </h1>
+
+          <p
+            style={{
+              fontSize: 16,
+              color: palette.textMuted,
+              lineHeight: 1.65,
+              maxWidth: 740,
+              margin: "0 0 28px",
+              fontWeight: 300,
+            }}
+          >
+            Most agents try a new tool, get overwhelmed, and abandon it. We do this differently. Four
+            steps, each one you decide on its own merits, none of them required to take the next. Your
+            AI runs on YOUR own server — provisioned for you alone, with transparent infrastructure
+            costs and no shared data with other clients.
+          </p>
+
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <a
+              href={CAL_DISCOVERY_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                background: palette.teal,
+                color: palette.bg,
+                padding: "12px 22px",
+                borderRadius: 6,
+                fontSize: 13,
+                fontFamily: fontMono,
+                fontWeight: 500,
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+                textDecoration: "none",
+                display: "inline-block",
+                transition: "opacity 180ms ease",
+              }}
+            >
+              Book a Discovery Call →
+            </a>
+            <button
+              onClick={handleSeeAuditPricing}
+              style={{
+                background: "transparent",
+                color: palette.text,
+                padding: "12px 22px",
+                borderRadius: 6,
+                fontSize: 13,
+                fontFamily: fontMono,
+                fontWeight: 500,
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+                cursor: "pointer",
+                border: `1px solid ${palette.border}`,
+                transition: "opacity 180ms ease",
+              }}
+            >
+              See Audit Pricing
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="journey-section"
+          style={{
+            display: "flex",
+            gap: 4,
+            marginBottom: 32,
+            padding: 4,
+            background: palette.bgCard,
+            borderRadius: 10,
+            width: "fit-content",
+            border: `1px solid ${palette.border}`,
+          }}
+        >
+          {[
+            { id: "journey", label: "Your journey" },
+            { id: "compare", label: "Before / after" },
+            { id: "trust", label: "What's guaranteed" },
+            { id: "referral", label: "Refer a friend" },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setView(tab.id)}
+              style={{
+                background: view === tab.id ? palette.bgSurface : "transparent",
+                border: "none",
+                color: view === tab.id ? palette.teal : palette.textMuted,
+                padding: "8px 16px",
+                borderRadius: 6,
+                fontSize: 12,
+                fontFamily: fontMono,
+                letterSpacing: "0.05em",
+                textTransform: "uppercase",
+                cursor: "pointer",
+                transition: "all 180ms ease",
+              }}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {view === "journey" && (
+          <>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16, marginBottom: 32 }}>
+              {journey.map((stage) => (
+                <Card key={stage.id} stage={stage} expanded={expanded} onToggle={setExpanded} />
+              ))}
+            </div>
+
+            <div
+              style={{
+                padding: "28px 30px",
+                background: palette.tealSoft,
+                borderRadius: 14,
+                border: `1px solid ${palette.teal}33`,
+                marginBottom: 32,
+              }}
+            >
+              <SectionLabel color={palette.teal}>Founding Member</SectionLabel>
+              <h2
+                style={{
+                  fontSize: 28,
+                  fontFamily: fontDisplay,
+                  fontWeight: 400,
+                  color: palette.text,
+                  margin: "0 0 12px 0",
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                Special pricing for our first cohort.
+              </h2>
+              <p
+                style={{
+                  fontSize: 14,
+                  color: palette.textMuted,
+                  lineHeight: 1.7,
+                  margin: "0 0 16px 0",
+                  maxWidth: 720,
+                }}
+              >
+                We're building Kapowsin AI in public, with our first customers, in the Pacific Northwest.
+                Founding Members get a discounted Audit ($500 instead of $1,497) and locked subscription
+                rates for the first 12 months — no price increases as our pricing matures. In exchange,
+                we ask for honest feedback and the willingness to be referenced as a case study (with
+                your approval).
+              </p>
+              <div style={{ display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center" }}>
+                <a
+                  href={CAL_DISCOVERY_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    background: palette.teal,
+                    color: palette.bg,
+                    padding: "10px 18px",
+                    borderRadius: 6,
+                    fontSize: 12,
+                    fontFamily: fontMono,
+                    fontWeight: 500,
+                    letterSpacing: "0.04em",
+                    textTransform: "uppercase",
+                    textDecoration: "none",
+                  }}
+                >
+                  Apply for Founding Rate
+                </a>
+                <span style={{ fontSize: 11, color: palette.textDim, fontFamily: fontMono, letterSpacing: "0.04em" }}>
+                  Limited founding spots available
+                </span>
+              </div>
+            </div>
+
+            <div
+              style={{
+                padding: "28px 30px",
+                background: palette.bgCard,
+                borderRadius: 14,
+                border: `1px solid ${palette.border}`,
+              }}
+            >
+              <SectionLabel color={palette.cyan}>How dedicated infrastructure works</SectionLabel>
+              <h2
+                style={{
+                  fontSize: 26,
+                  fontFamily: fontDisplay,
+                  fontWeight: 400,
+                  color: palette.text,
+                  margin: "0 0 14px 0",
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                Your AI lives on YOUR server.
+              </h2>
+              <p style={{ fontSize: 14, color: palette.textMuted, lineHeight: 1.7, margin: "0 0 18px 0", maxWidth: 760 }}>
+                Most AI services share one big server across hundreds of clients. Your data sits next
+                to your competitor's data, separated only by software permissions. We do the opposite.
+                Every Kapowsin client gets a dedicated Hetzner virtual private server provisioned at
+                signup — your AI agents, your contacts, your conversations, your configurations all
+                live in one place that nobody else has access to.
+              </p>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, marginBottom: 18 }}>
+                {[
+                  { title: "Data isolation", body: "Your client info never crosses paths with another agent's. Period." },
+                  { title: "Performance isolation", body: "A heavy day for someone else doesn't slow your AI down." },
+                  { title: "Yours to keep", body: "If you ever leave, the server and its data go with you." },
+                ].map((item, i) => (
+                  <div key={i} style={{ background: palette.bgSurface, padding: "16px 18px", borderRadius: 8, border: `1px solid ${palette.border}` }}>
+                    <div style={{ fontSize: 14, fontFamily: fontDisplay, fontWeight: 500, color: palette.cyan, marginBottom: 6, letterSpacing: "-0.01em" }}>
+                      {item.title}
+                    </div>
+                    <div style={{ fontSize: 12, color: palette.textMuted, lineHeight: 1.55 }}>
+                      {item.body}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div style={{ fontSize: 12, color: palette.textDim, fontStyle: "italic", lineHeight: 1.6 }}>
+                Infrastructure costs are billed at our actual cost as monthly line items. Server: ~$25-30/month.
+                LLM API usage: $40-300/month depending on tier and usage (multi-model swarm with Grok and
+                Claude reduces cost vs. single-model alternatives). Transparent passthrough — no markup.
+              </div>
+            </div>
+          </>
+        )}
+
+        {view === "compare" && (
+          <div>
+            <p style={{ fontSize: 14, color: palette.textMuted, lineHeight: 1.7, maxWidth: 760, marginBottom: 32 }}>
+              We're not here to tell you AI is magic. We're here to remove specific things from your
+              week. Here's what changes when the Chief of Staff is running on your dedicated server.
+            </p>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 12 }}>
+              {compareItems.map((item, i) => (
+                <div
+                  key={i}
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "60px 1fr 24px 1fr",
+                    gap: 16,
+                    alignItems: "center",
+                    background: palette.bgCard,
+                    border: `1px solid ${palette.border}`,
+                    borderRadius: 12,
+                    padding: "20px 24px",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: 24,
+                      fontFamily: fontDisplay,
+                      fontWeight: 400,
+                      color: palette.textFaint,
+                      letterSpacing: "-0.03em",
+                      textAlign: "center",
+                    }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <div style={{ fontSize: 13, color: palette.textMuted, lineHeight: 1.55 }}>
+                    <Pill color={palette.rose} bg={palette.roseSoft}>Without us</Pill>
+                    <div style={{ marginTop: 8 }}>{item.you}</div>
+                  </div>
+                  <div style={{ color: palette.teal, fontSize: 18, textAlign: "center" }}>→</div>
+                  <div style={{ fontSize: 13, color: palette.text, lineHeight: 1.55 }}>
+                    <Pill color={palette.teal} bg={palette.tealSoft}>With us</Pill>
+                    <div style={{ marginTop: 8 }}>{item.us}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div
+              style={{
+                marginTop: 32,
+                padding: "24px 28px",
+                background: palette.bgCard,
+                border: `1px solid ${palette.border}`,
+                borderRadius: 12,
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: 18,
+                  fontFamily: fontDisplay,
+                  fontWeight: 500,
+                  color: palette.text,
+                  margin: "0 0 8px 0",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                What this looks like in time-saved-per-week
+              </h3>
+              <p style={{ fontSize: 13, color: palette.textMuted, lineHeight: 1.7, margin: 0 }}>
+                Most Growth-tier clients report 12-18 hours per week back in their schedule within 60
+                days of going live. At conservative rates, that's the equivalent of {`$3,000-$6,000`} per
+                month in time recovered, against a {`$997/mo`} subscription plus ~$80-150/mo in
+                transparent infrastructure passthrough.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {view === "trust" && (
+          <div>
+            <p style={{ fontSize: 14, color: palette.textMuted, lineHeight: 1.7, maxWidth: 760, marginBottom: 32 }}>
+              We've designed our policies for the situation most agents have actually been in: tried a
+              new tool, gotten burned, didn't get value, couldn't get a refund. None of that here.
+            </p>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+              {guarantees.map((g, i) => (
+                <div
+                  key={i}
+                  style={{
+                    padding: "20px 22px",
+                    background: palette.bgCard,
+                    border: `1px solid ${palette.border}`,
+                    borderRadius: 10,
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 28,
+                      height: 28,
+                      borderRadius: "50%",
+                      background: palette.greenSoft,
+                      border: `1px solid ${palette.green}55`,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: palette.green,
+                      fontSize: 14,
+                      marginBottom: 14,
+                    }}
+                  >
+                    ✓
+                  </div>
+                  <h3
+                    style={{
+                      fontSize: 16,
+                      fontFamily: fontDisplay,
+                      fontWeight: 500,
+                      color: palette.text,
+                      margin: "0 0 8px 0",
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    {g.title}
+                  </h3>
+                  <p style={{ fontSize: 13, color: palette.textMuted, lineHeight: 1.6, margin: 0 }}>
+                    {g.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {view === "referral" && (
+          <div>
+            <p style={{ fontSize: 14, color: palette.textMuted, lineHeight: 1.7, maxWidth: 760, marginBottom: 32 }}>
+              Two ways to share Kapowsin and get rewarded for it. The right path depends on whether
+              you're a customer who refers occasionally, or a partner who refers professionally.
+            </p>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 32 }}>
+              <div
+                style={{
+                  padding: "28px 26px",
+                  background: palette.bgCard,
+                  border: `1px solid ${palette.teal}55`,
+                  borderRadius: 14,
+                }}
+              >
+                <Pill color={palette.teal} bg={palette.tealSoft}>For customers</Pill>
+                <h3
+                  style={{
+                    fontSize: 24,
+                    fontFamily: fontDisplay,
+                    fontWeight: 400,
+                    color: palette.text,
+                    margin: "14px 0 8px 0",
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  Customer Referral Program
+                </h3>
+                <div style={{ fontSize: 13, color: palette.teal, fontFamily: fontDisplay, fontStyle: "italic", marginBottom: 18 }}>
+                  Account credits · Two-sided · Simple
+                </div>
+
+                <SectionLabel color={palette.teal}>What you get</SectionLabel>
+                <div
+                  style={{
+                    background: palette.bgSurface,
+                    padding: "16px 18px",
+                    borderRadius: 8,
+                    marginBottom: 14,
+                    border: `1px solid ${palette.border}`,
+                  }}
+                >
+                  <div style={{ fontSize: 32, fontFamily: fontDisplay, color: palette.teal, fontWeight: 500, lineHeight: 1, marginBottom: 6 }}>
+                    One month free
+                  </div>
+                  <div style={{ fontSize: 13, color: palette.text, lineHeight: 1.5, marginBottom: 10 }}>
+                    on your subscription, applied to your next billing cycle after your referral signs up and completes their first month.
+                  </div>
+                  <div style={{ fontSize: 11, color: palette.textDim, lineHeight: 1.5 }}>
+                    For Growth tier: that's $997 saved. For Pro tier: $1,497 saved. Infrastructure passthrough still applies during the free month.
+                  </div>
+                </div>
+
+                <SectionLabel color={palette.teal}>What they get</SectionLabel>
+                <div
+                  style={{
+                    background: palette.bgSurface,
+                    padding: "16px 18px",
+                    borderRadius: 8,
+                    marginBottom: 14,
+                    border: `1px solid ${palette.border}`,
+                  }}
+                >
+                  <div style={{ fontSize: 32, fontFamily: fontDisplay, color: palette.teal, fontWeight: 500, lineHeight: 1, marginBottom: 6 }}>
+                    $200 off setup
+                  </div>
+                  <div style={{ fontSize: 13, color: palette.text, lineHeight: 1.5 }}>
+                    Setup fee discount applied automatically when they sign up using your referral. Stacks with the audit-credit-toward-subscription benefit.
+                  </div>
+                </div>
+
+                <SectionLabel color={palette.teal}>How it works</SectionLabel>
+                <ol style={{ fontSize: 12.5, color: palette.textMuted, lineHeight: 1.65, paddingLeft: 18, margin: "0 0 14px 0" }}>
+                  <li style={{ marginBottom: 6 }}>You get a unique referral link in your client dashboard</li>
+                  <li style={{ marginBottom: 6 }}>You share it with anyone who'd benefit (no minimum, no maximum)</li>
+                  <li style={{ marginBottom: 6 }}>When they sign up, both credits apply automatically</li>
+                  <li>Your credit appears on next month's invoice as a line item</li>
+                </ol>
+
+                <div style={{ fontSize: 11, color: palette.textDim, fontStyle: "italic", lineHeight: 1.55 }}>
+                  Why a free month instead of cash? B2B SaaS data shows credit-based programs outperform cash by 18% in customer satisfaction. A free month is also psychologically cleaner to share — it's a complete, satisfying reward rather than a percentage discount that fades quickly.
+                </div>
+              </div>
+
+              <div
+                style={{
+                  padding: "28px 26px",
+                  background: palette.bgCard,
+                  border: `1px solid ${palette.purple}55`,
+                  borderRadius: 14,
+                }}
+              >
+                <Pill color={palette.purple} bg={palette.purpleSoft}>For distribution partners</Pill>
+                <h3
+                  style={{
+                    fontSize: 24,
+                    fontFamily: fontDisplay,
+                    fontWeight: 400,
+                    color: palette.text,
+                    margin: "14px 0 8px 0",
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  Partner Program
+                </h3>
+                <div style={{ fontSize: 13, color: palette.purple, fontFamily: fontDisplay, fontStyle: "italic", marginBottom: 18 }}>
+                  Cash commission · One-time per signup · Paid in 30 days
+                </div>
+
+                <SectionLabel color={palette.purple}>What you get</SectionLabel>
+                <div
+                  style={{
+                    background: palette.bgSurface,
+                    padding: "16px 18px",
+                    borderRadius: 8,
+                    marginBottom: 14,
+                    border: `1px solid ${palette.border}`,
+                  }}
+                >
+                  <div style={{ fontSize: 28, fontFamily: fontDisplay, color: palette.purple, fontWeight: 500, lineHeight: 1, marginBottom: 6 }}>
+                    $300 - $500 cash
+                  </div>
+                  <div style={{ fontSize: 13, color: palette.text, lineHeight: 1.5, marginBottom: 10 }}>
+                    one-time per successful referral, paid within 30 days of the new client completing their first full month.
+                  </div>
+                  <div style={{ fontSize: 11, color: palette.textDim, lineHeight: 1.5, marginBottom: 6 }}>
+                    Tier-based: <span style={{ color: palette.text }}>$300</span> for Starter, <span style={{ color: palette.text }}>$500</span> for Growth or Pro tier referrals.
+                  </div>
+                  <div style={{ fontSize: 11, color: palette.textDim, lineHeight: 1.5 }}>
+                    Paid via direct deposit or check. No cap on referral volume.
+                  </div>
+                </div>
+
+                <SectionLabel color={palette.purple}>What they get</SectionLabel>
+                <div
+                  style={{
+                    background: palette.bgSurface,
+                    padding: "16px 18px",
+                    borderRadius: 8,
+                    marginBottom: 14,
+                    border: `1px solid ${palette.border}`,
+                  }}
+                >
+                  <div style={{ fontSize: 32, fontFamily: fontDisplay, color: palette.purple, fontWeight: 500, lineHeight: 1, marginBottom: 6 }}>
+                    $200 off setup
+                  </div>
+                  <div style={{ fontSize: 13, color: palette.text, lineHeight: 1.5 }}>
+                    Same setup fee discount as the customer referral program — referrals from partners are equally valued.
+                  </div>
+                </div>
+
+                <SectionLabel color={palette.purple}>Who this is for</SectionLabel>
+                <ul style={{ fontSize: 12.5, color: palette.textMuted, lineHeight: 1.65, paddingLeft: 18, margin: "0 0 14px 0", listStyle: "none" }}>
+                  <li style={{ marginBottom: 6, position: "relative", paddingLeft: 12 }}>
+                    <span style={{ position: "absolute", left: 0, color: palette.purple }}>—</span>
+                    Mortgage lenders and title companies who want to add value for their RE network
+                  </li>
+                  <li style={{ marginBottom: 6, position: "relative", paddingLeft: 12 }}>
+                    <span style={{ position: "absolute", left: 0, color: palette.purple }}>—</span>
+                    Real estate coaches and consultants whose clients ask about AI
+                  </li>
+                  <li style={{ marginBottom: 6, position: "relative", paddingLeft: 12 }}>
+                    <span style={{ position: "absolute", left: 0, color: palette.purple }}>—</span>
+                    Brokerage leaders who refer multiple agents per year
+                  </li>
+                  <li style={{ position: "relative", paddingLeft: 12 }}>
+                    <span style={{ position: "absolute", left: 0, color: palette.purple }}>—</span>
+                    Service businesses adjacent to RE (transaction coordinators, property managers)
+                  </li>
+                </ul>
+
+                <div style={{ fontSize: 11, color: palette.textDim, fontStyle: "italic", lineHeight: 1.55 }}>
+                  Partner Program requires a signed agreement. We'll send the terms after a 20-min onboarding call. Application is by invitation or request — we want partners we know we can work with.
+                </div>
+              </div>
+            </div>
+
+            <div
+              style={{
+                padding: "20px 24px",
+                background: palette.tealSoft,
+                borderRadius: 12,
+                border: `1px solid ${palette.teal}33`,
+                marginBottom: 20,
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: 16,
+                  fontFamily: fontDisplay,
+                  fontWeight: 500,
+                  color: palette.text,
+                  margin: "0 0 8px 0",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                A real example
+              </h3>
+              <p style={{ fontSize: 13, color: palette.textMuted, lineHeight: 1.65, margin: "0 0 12px 0" }}>
+                <strong style={{ color: palette.teal }}>Customer side:</strong> You're on Growth tier ($997/mo). You refer one colleague who signs up for Growth tier and stays past their first month. Your next billing cycle: $0 subscription. Combined value: $997 saved. Meanwhile, your colleague got $200 off their $2,500 setup fee — paying $2,300 to start.
+              </p>
+              <p style={{ fontSize: 13, color: palette.textMuted, lineHeight: 1.65, margin: 0 }}>
+                <strong style={{ color: palette.purple }}>Partner side:</strong> You're a mortgage lender. You refer two clients in a quarter — one Growth, one Pro. Within 30 days of each completing their first month, you receive $500 + $500 = $1,000 cash via direct deposit. Each client also got $200 off their setup. No 12-month tracking required, no quarterly statements to wait for.
+              </p>
+            </div>
+
+            <div
+              style={{
+                padding: "24px 28px",
+                background: palette.bgCard,
+                border: `1px solid ${palette.border}`,
+                borderRadius: 12,
+                textAlign: "center",
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: 18,
+                  fontFamily: fontDisplay,
+                  fontWeight: 500,
+                  color: palette.text,
+                  margin: "0 0 8px 0",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                Already a Kapowsin customer?
+              </h3>
+              <p style={{ fontSize: 13, color: palette.textMuted, lineHeight: 1.65, margin: "0 0 16px 0" }}>
+                Your unique referral link is in your client dashboard. Send it to anyone who'd benefit.
+              </p>
+              <p style={{ fontSize: 13, color: palette.textMuted, lineHeight: 1.65, margin: 0 }}>
+                Interested in the Partner Program?{" "}
+                <a href={`mailto:${CONTACT_EMAIL}?subject=Partner Program inquiry`} style={{ color: palette.teal, textDecoration: "none", borderBottom: `1px dotted ${palette.teal}` }}>
+                  Email us at {CONTACT_EMAIL}
+                </a>
+                {" "}with a brief note about your network.
+              </p>
+            </div>
+          </div>
+        )}
+
+        <div
+          style={{
+            marginTop: 60,
+            padding: "32px 32px",
+            background: palette.bgCard,
+            border: `1px solid ${palette.border}`,
+            borderRadius: 14,
+            textAlign: "center",
+          }}
+        >
+          <SectionLabel color={palette.teal}>Ready when you are</SectionLabel>
+          <h2
+            style={{
+              fontSize: 32,
+              fontFamily: fontDisplay,
+              fontWeight: 400,
+              color: palette.text,
+              margin: "0 0 12px 0",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Start with whichever step fits.
+          </h2>
+          <p
+            style={{
+              fontSize: 14,
+              color: palette.textMuted,
+              lineHeight: 1.7,
+              maxWidth: 540,
+              margin: "0 auto 22px",
+            }}
+          >
+            Most clients start with a free Discovery Call. Some prefer to come straight in with an Audit.
+            A few jump straight to a subscription. There's no wrong path — only the one that fits where
+            you are right now.
+          </p>
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+            <a
+              href={CAL_DISCOVERY_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                background: palette.teal,
+                color: palette.bg,
+                padding: "12px 22px",
+                borderRadius: 6,
+                fontSize: 13,
+                fontFamily: fontMono,
+                fontWeight: 500,
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+                textDecoration: "none",
+              }}
+            >
+              Book Discovery Call
+            </a>
+            <button
+              onClick={handleSeeAuditPricing}
+              style={{
+                background: "transparent",
+                color: palette.text,
+                padding: "12px 22px",
+                borderRadius: 6,
+                fontSize: 13,
+                fontFamily: fontMono,
+                fontWeight: 500,
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+                cursor: "pointer",
+                border: `1px solid ${palette.border}`,
+              }}
+            >
+              See Audit Pricing
+            </button>
+          </div>
+        </div>
+
+        <div
+          style={{
+            marginTop: 32,
+            paddingTop: 24,
+            borderTop: `1px solid ${palette.border}`,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: 16,
+          }}
+        >
+          <div style={{ fontSize: 11, fontFamily: fontMono, color: palette.textDim, letterSpacing: "0.08em" }}>
+            Kapowsin Business Solutions LLC · Lakewood, WA · {CONTACT_EMAIL}
+          </div>
+          <div style={{ fontSize: 11, fontFamily: fontMono, color: palette.textDim, letterSpacing: "0.08em" }}>
+            Built for the Pacific Northwest real estate community
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(React.createElement(KapowsinJourney));
+  </script>
+</body>
+</html>

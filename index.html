@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kapowsin AI — For Real Estate Professionals</title>
   <meta name="description" content="The AI Chief of Staff for Real Estate Professionals. From curious to covered, on your timeline. Serving the Pacific Northwest." />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -39,14 +42,14 @@ const palette = {
   amberSoft: "rgba(245, 158, 11, 0.10)",
   rose: "#fb7185",
   roseSoft: "rgba(251, 113, 133, 0.10)",
-  purple: "#a78bfa",
-  purpleSoft: "rgba(167, 139, 250, 0.10)",
+  partner: "#f59e0b",
+  partnerSoft: "rgba(245, 158, 11, 0.10)",
   green: "#4ade80",
   greenSoft: "rgba(74, 222, 128, 0.10)",
 };
 
-const fontDisplay = `"Fraunces", "Hoefler Text", Georgia, serif`;
-const fontBody = `"Inter Tight", "Helvetica Neue", system-ui, sans-serif`;
+const fontDisplay = `"Satoshi", "Outfit", "DM Sans", system-ui, sans-serif`;
+const fontBody = `"Outfit", "DM Sans", "Helvetica Neue", system-ui, sans-serif`;
 const fontMono = `"JetBrains Mono", "SF Mono", monospace`;
 
 const SectionLabel = ({ children, color = palette.teal }) => (
@@ -198,8 +201,8 @@ const journey = [
     step: "04",
     name: "Scale",
     subtitle: "Add-ons that compound",
-    color: palette.purple,
-    colorSoft: palette.purpleSoft,
+    color: palette.partner,
+    colorSoft: palette.partnerSoft,
     duration: "Month-to-month, anytime",
     cost: "$150 - $497/mo each",
     valueLine: "Add capability as you grow. The Chief of Staff orchestrates everything in one system.",
@@ -341,7 +344,7 @@ const Card = ({ stage, expanded, onToggle }) => {
       style={{
         background: palette.bgCard,
         border: `1px solid ${isOpen ? stage.color + "55" : palette.border}`,
-        borderRadius: 14,
+        borderRadius: 12,
         padding: "24px 26px",
         cursor: "pointer",
         transition: "border-color 220ms ease",
@@ -563,7 +566,8 @@ export default function KapowsinJourney() {
       }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+        @import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
         a:hover { opacity: 0.85; }
         button:hover { opacity: 0.9; }
       `}</style>
@@ -679,7 +683,7 @@ export default function KapowsinJourney() {
             marginBottom: 32,
             padding: 4,
             background: palette.bgCard,
-            borderRadius: 10,
+            borderRadius: 12,
             width: "fit-content",
             border: `1px solid ${palette.border}`,
           }}
@@ -724,7 +728,7 @@ export default function KapowsinJourney() {
               style={{
                 padding: "28px 30px",
                 background: palette.tealSoft,
-                borderRadius: 14,
+                borderRadius: 12,
                 border: `1px solid ${palette.teal}33`,
                 marginBottom: 32,
               }}
@@ -787,7 +791,7 @@ export default function KapowsinJourney() {
               style={{
                 padding: "28px 30px",
                 background: palette.bgCard,
-                borderRadius: 14,
+                borderRadius: 12,
                 border: `1px solid ${palette.border}`,
               }}
             >
@@ -811,17 +815,17 @@ export default function KapowsinJourney() {
                 signup — your AI agents, your contacts, your conversations, your configurations all
                 live in one place that nobody else has access to.
               </p>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, marginBottom: 18 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 18 }}>
                 {[
                   { title: "Data isolation", body: "Your client info never crosses paths with another agent's. Period." },
                   { title: "Performance isolation", body: "A heavy day for someone else doesn't slow your AI down." },
                   { title: "Yours to keep", body: "If you ever leave, the server and its data go with you." },
                 ].map((item, i) => (
-                  <div key={i} style={{ background: palette.bgSurface, padding: "16px 18px", borderRadius: 8, border: `1px solid ${palette.border}` }}>
-                    <div style={{ fontSize: 14, fontFamily: fontDisplay, fontWeight: 500, color: palette.cyan, marginBottom: 6, letterSpacing: "-0.01em" }}>
+                  <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 16, padding: "14px 18px", background: palette.bgSurface, borderLeft: `2px solid ${palette.cyan}`, borderRadius: "0 12px 12px 0" }}>
+                    <div style={{ fontSize: 11, fontFamily: fontMono, letterSpacing: "0.06em", textTransform: "uppercase", color: palette.cyan, marginTop: 2, flexShrink: 0, minWidth: 140 }}>
                       {item.title}
                     </div>
-                    <div style={{ fontSize: 12, color: palette.textMuted, lineHeight: 1.55 }}>
+                    <div style={{ fontSize: 13, color: palette.textMuted, lineHeight: 1.55 }}>
                       {item.body}
                     </div>
                   </div>
@@ -929,7 +933,7 @@ export default function KapowsinJourney() {
                     padding: "20px 22px",
                     background: palette.bgCard,
                     border: `1px solid ${palette.border}`,
-                    borderRadius: 10,
+                    borderRadius: 12,
                   }}
                 >
                   <div
@@ -983,7 +987,7 @@ export default function KapowsinJourney() {
                   padding: "28px 26px",
                   background: palette.bgCard,
                   border: `1px solid ${palette.teal}55`,
-                  borderRadius: 14,
+                  borderRadius: 12,
                 }}
               >
                 <Pill color={palette.teal} bg={palette.tealSoft}>For customers</Pill>
@@ -1059,11 +1063,11 @@ export default function KapowsinJourney() {
                 style={{
                   padding: "28px 26px",
                   background: palette.bgCard,
-                  border: `1px solid ${palette.purple}55`,
-                  borderRadius: 14,
+                  border: `1px solid ${palette.partner}55`,
+                  borderRadius: 12,
                 }}
               >
-                <Pill color={palette.purple} bg={palette.purpleSoft}>For distribution partners</Pill>
+                <Pill color={palette.partner} bg={palette.partnerSoft}>For distribution partners</Pill>
                 <h3
                   style={{
                     fontSize: 24,
@@ -1076,11 +1080,11 @@ export default function KapowsinJourney() {
                 >
                   Partner Program
                 </h3>
-                <div style={{ fontSize: 13, color: palette.purple, fontFamily: fontDisplay, fontStyle: "italic", marginBottom: 18 }}>
+                <div style={{ fontSize: 13, color: palette.partner, fontFamily: fontDisplay, fontStyle: "italic", marginBottom: 18 }}>
                   Cash commission · One-time per signup · Paid in 30 days
                 </div>
 
-                <SectionLabel color={palette.purple}>What you get</SectionLabel>
+                <SectionLabel color={palette.partner}>What you get</SectionLabel>
                 <div
                   style={{
                     background: palette.bgSurface,
@@ -1090,7 +1094,7 @@ export default function KapowsinJourney() {
                     border: `1px solid ${palette.border}`,
                   }}
                 >
-                  <div style={{ fontSize: 28, fontFamily: fontDisplay, color: palette.purple, fontWeight: 500, lineHeight: 1, marginBottom: 6 }}>
+                  <div style={{ fontSize: 28, fontFamily: fontDisplay, color: palette.partner, fontWeight: 500, lineHeight: 1, marginBottom: 6 }}>
                     $300 - $500 cash
                   </div>
                   <div style={{ fontSize: 13, color: palette.text, lineHeight: 1.5, marginBottom: 10 }}>
@@ -1104,7 +1108,7 @@ export default function KapowsinJourney() {
                   </div>
                 </div>
 
-                <SectionLabel color={palette.purple}>What they get</SectionLabel>
+                <SectionLabel color={palette.partner}>What they get</SectionLabel>
                 <div
                   style={{
                     background: palette.bgSurface,
@@ -1114,7 +1118,7 @@ export default function KapowsinJourney() {
                     border: `1px solid ${palette.border}`,
                   }}
                 >
-                  <div style={{ fontSize: 32, fontFamily: fontDisplay, color: palette.purple, fontWeight: 500, lineHeight: 1, marginBottom: 6 }}>
+                  <div style={{ fontSize: 32, fontFamily: fontDisplay, color: palette.partner, fontWeight: 500, lineHeight: 1, marginBottom: 6 }}>
                     $200 off setup
                   </div>
                   <div style={{ fontSize: 13, color: palette.text, lineHeight: 1.5 }}>
@@ -1122,22 +1126,22 @@ export default function KapowsinJourney() {
                   </div>
                 </div>
 
-                <SectionLabel color={palette.purple}>Who this is for</SectionLabel>
+                <SectionLabel color={palette.partner}>Who this is for</SectionLabel>
                 <ul style={{ fontSize: 12.5, color: palette.textMuted, lineHeight: 1.65, paddingLeft: 18, margin: "0 0 14px 0", listStyle: "none" }}>
                   <li style={{ marginBottom: 6, position: "relative", paddingLeft: 12 }}>
-                    <span style={{ position: "absolute", left: 0, color: palette.purple }}>—</span>
+                    <span style={{ position: "absolute", left: 0, color: palette.partner }}>—</span>
                     Mortgage lenders and title companies who want to add value for their RE network
                   </li>
                   <li style={{ marginBottom: 6, position: "relative", paddingLeft: 12 }}>
-                    <span style={{ position: "absolute", left: 0, color: palette.purple }}>—</span>
+                    <span style={{ position: "absolute", left: 0, color: palette.partner }}>—</span>
                     Real estate coaches and consultants whose clients ask about AI
                   </li>
                   <li style={{ marginBottom: 6, position: "relative", paddingLeft: 12 }}>
-                    <span style={{ position: "absolute", left: 0, color: palette.purple }}>—</span>
+                    <span style={{ position: "absolute", left: 0, color: palette.partner }}>—</span>
                     Brokerage leaders who refer multiple agents per year
                   </li>
                   <li style={{ position: "relative", paddingLeft: 12 }}>
-                    <span style={{ position: "absolute", left: 0, color: palette.purple }}>—</span>
+                    <span style={{ position: "absolute", left: 0, color: palette.partner }}>—</span>
                     Service businesses adjacent to RE (transaction coordinators, property managers)
                   </li>
                 </ul>
@@ -1173,7 +1177,7 @@ export default function KapowsinJourney() {
                 <strong style={{ color: palette.teal }}>Customer side:</strong> You're on Growth tier ($997/mo). You refer one colleague who signs up for Growth tier and stays past their first month. Your next billing cycle: $0 subscription. Combined value: $997 saved. Meanwhile, your colleague got $200 off their $2,500 setup fee — paying $2,300 to start.
               </p>
               <p style={{ fontSize: 13, color: palette.textMuted, lineHeight: 1.65, margin: 0 }}>
-                <strong style={{ color: palette.purple }}>Partner side:</strong> You're a mortgage lender. You refer two clients in a quarter — one Growth, one Pro. Within 30 days of each completing their first month, you receive $500 + $500 = $1,000 cash via direct deposit. Each client also got $200 off their setup. No 12-month tracking required, no quarterly statements to wait for.
+                <strong style={{ color: palette.partner }}>Partner side:</strong> You're a mortgage lender. You refer two clients in a quarter — one Growth, one Pro. Within 30 days of each completing their first month, you receive $500 + $500 = $1,000 cash via direct deposit. Each client also got $200 off their setup. No 12-month tracking required, no quarterly statements to wait for.
               </p>
             </div>
 
@@ -1218,7 +1222,7 @@ export default function KapowsinJourney() {
             padding: "32px 32px",
             background: palette.bgCard,
             border: `1px solid ${palette.border}`,
-            borderRadius: 14,
+            borderRadius: 12,
             textAlign: "center",
           }}
         >

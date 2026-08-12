@@ -10,7 +10,7 @@
 
   <title>Kapowsin AI — For Real Estate Professionals</title>
 
-  <meta name="description" content="The AI Chief of Staff for Real Estate Professionals. From curious to covered, on your timeline. Serving the Pacific Northwest." />
+  <meta name="description" content="The AI Chief of Staff for Real Estate Professionals, Mortgage Lenders & Service Businesses. Assessments, one-time builds, retainers and fractional AI officers. Serving the Pacific Northwest." />
 
   <link rel="preconnect" href="https://api.fontshare.com" />
 
@@ -102,7 +102,7 @@
 
     .logo { font-family: "Satoshi", sans-serif; font-weight: 700; font-size: 20px; color: var(--teal); text-decoration: none; }
 
-    .nav-links { display: flex; gap: 32px; }
+    .nav-links { display: flex; gap: 28px; }
 
     .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; }
 
@@ -298,6 +298,328 @@
 
     .compare-card li::before { content: "•"; color: var(--teal); }
 
+    /* NEW: build / care / retainer / program / infra / roi / addon styles */
+
+    .build-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 8px;
+
+    }
+
+    .build-item {
+
+      background: rgba(255,255,255,0.03);
+
+      border: 1px solid var(--border);
+
+      border-radius: 6px;
+
+      padding: 7px 9px;
+
+      font-size: 11px;
+
+      line-height: 1.3;
+
+    }
+
+    .build-item .price { color: #2dd4bf; font-weight: 600; font-size: 10px; display: block; }
+
+    .build-custom {
+
+      border-style: dashed;
+
+      border-color: var(--text-dim);
+
+      background: transparent;
+
+      text-align: center;
+
+      font-style: italic;
+
+      color: var(--text-dim);
+
+    }
+
+    .care-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 8px;
+
+    }
+
+    .care-card {
+
+      background: var(--surface);
+
+      border: 1px solid var(--border);
+
+      border-radius: 8px;
+
+      padding: 9px 10px;
+
+      font-size: 11px;
+
+      line-height: 1.25;
+
+    }
+
+    .care-card.popular {
+
+      border-color: #34d399;
+
+    }
+
+    .care-badge {
+
+      font-size: 8px;
+
+      font-weight: 700;
+
+      letter-spacing: 0.05em;
+
+      background: #34d399;
+
+      color: #0a0e1a;
+
+      padding: 1px 5px;
+
+      border-radius: 3px;
+
+      display: inline-block;
+
+      margin-bottom: 3px;
+
+    }
+
+    .retainer-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 8px;
+
+    }
+
+    .retainer-card {
+
+      background: var(--surface);
+
+      border: 1px solid var(--border);
+
+      border-radius: 8px;
+
+      padding: 8px 6px;
+
+      font-size: 10px;
+
+      line-height: 1.2;
+
+    }
+
+    .retainer-card.popular { border-color: #34d399; }
+
+    .retainer-card .name { font-weight: 700; font-size: 10px; }
+
+    .retainer-card .price-line { font-weight: 600; color: #a5b4fc; font-size: 10px; }
+
+    .retainer-card .setup { font-size: 9px; color: var(--text-dim); }
+
+    .retainer-card .features { font-size: 9px; color: var(--text-muted); margin-top: 3px; line-height: 1.2; }
+
+    .frac-card {
+
+      border: 2px solid #6ee7b7;
+
+      background: rgba(52,211,153,0.03);
+
+      border-radius: 12px;
+
+      padding: 16px;
+
+      margin-top: 12px;
+
+    }
+
+    .frac-features {
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 3px 14px;
+
+      font-size: 12px;
+
+      margin: 10px 0;
+
+    }
+
+    .addon-list {
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 4px 32px;
+
+      font-size: 14px;
+
+    }
+
+    .addon-list > div {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      padding: 6px 0;
+
+      border-bottom: 1px solid var(--border);
+
+    }
+
+    .program-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 16px;
+
+    }
+
+    .program-card {
+
+      background: var(--surface);
+
+      border: 1px solid var(--border);
+
+      border-radius: 12px;
+
+      padding: 18px;
+
+      font-size: 14px;
+
+    }
+
+    .program-card h4 {
+
+      margin: 0 0 6px;
+
+      font-size: 15px;
+
+    }
+
+    .infra-grid {
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 16px;
+
+    }
+
+    .infra-tier {
+
+      background: var(--surface);
+
+      border: 1px solid var(--border);
+
+      border-radius: 12px;
+
+      padding: 18px;
+
+    }
+
+    .infra-tier h4 {
+
+      margin: 0 0 8px;
+
+      font-size: 14px;
+
+      color: #2dd4bf;
+
+    }
+
+    .infra-tier ul {
+
+      margin: 0;
+
+      padding-left: 16px;
+
+      font-size: 13px;
+
+      color: var(--text-muted);
+
+      line-height: 1.5;
+
+    }
+
+    .roi-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 16px;
+
+    }
+
+    .roi-card {
+
+      background: var(--surface);
+
+      border: 1px solid var(--border);
+
+      border-radius: 12px;
+
+      padding: 16px;
+
+      text-align: center;
+
+    }
+
+    .roi-card .big {
+
+      font-size: 22px;
+
+      font-weight: 700;
+
+      color: #2dd4bf;
+
+    }
+
+    .roi-card .label {
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      margin: 4px 0 6px;
+
+    }
+
+    .roi-card p {
+
+      font-size: 12px;
+
+      color: var(--text-muted);
+
+      margin: 0;
+
+      line-height: 1.4;
+
+    }
+
     @media (max-width: 900px) {
 
       .phase-grid { grid-template-columns: 1fr; }
@@ -313,6 +635,10 @@
       .compare-grid { grid-template-columns: 1fr; }
 
       .nav-links { display: none; }
+
+      .build-grid, .care-grid, .retainer-grid, .program-grid, .infra-grid, .roi-grid, .addon-list { grid-template-columns: 1fr; }
+
+      .frac-features { grid-template-columns: 1fr; }
 
     }
 
@@ -334,7 +660,15 @@
 
         <a href="#journey">Journey</a>
 
-        <a href="#compare">Compare</a>
+        <a href="#phases">The Method</a>
+
+        <a href="#addons">Add-Ons</a>
+
+        <a href="#programs">Programs</a>
+
+        <a href="#infrastructure">Infrastructure</a>
+
+        <a href="#roi">ROI</a>
 
         <a href="#partner">Partners</a>
 
@@ -354,13 +688,13 @@
 
     <h1>The AI Chief of Staff<br>for Real Estate Professionals</h1>
 
-    <p>From curious to covered, on your timeline.<br>Serving the Pacific Northwest.</p>
+    <p>For Real Estate Professionals, Mortgage Lenders & Service Businesses</p>
 
     <div class="hero-actions">
 
       <a href="https://cal.com/thekapowsincompany/ai-assessment-report-call" class="btn btn-primary">Book Discovery Call</a>
 
-      <a href="#compare" class="btn btn-secondary">See Pricing</a>
+      <a href="#phases" class="btn btn-secondary">See The Method</a>
 
     </div>
 
@@ -386,33 +720,27 @@
 
     <div style="text-align:center;margin-bottom:48px;">
 
-      <div style="color:#2dd4bf;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">8-Stage Journey</div>
+      <div style="color:#2dd4bf;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">5-Stage Journey</div>
 
       <h2 style="font-size:32px;margin:0;">From Curious to Covered</h2>
 
     </div>
 
-    <div class="step"><div class="step-num">01</div><div class="step-content"><h3>Discovery Call</h3><p>30-minute conversation. We map your current stack, pain points, and goals. No pitch — just clarity.</p></div></div>
+    <div class="step"><div class="step-num">01</div><div class="step-content"><h3>Discovery Call</h3><p>Free 30-min. No pitch, just clarity.</p></div></div>
 
-    <div class="step"><div class="step-num">02</div><div class="step-content"><h3>AI Readiness Assessment</h3><p>Deep-dive report with Impact-Effort matrix, Quick Wins, 30/90/180 roadmap, and ROI math. Delivered after payment + review call.</p></div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-content"><h3>AI Operations Assessment</h3><p>Deep-dive report. Three tiers: Solo ($250), Team ($500-1K), Business ($1,500). Your fee credits toward any build or retainer.</p></div></div>
 
-    <div class="step"><div class="step-num">03</div><div class="step-content"><h3>Second Brain Build</h3><p>Your central knowledge base. Everything in one place. Included in every CoS tier. Standalone option available for DIY buyers.</p></div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-content"><h3>Build</h3><p>We fix the specific workflow or automation that hurts most. One-time builds from $500 to $5,000.</p></div></div>
 
-    <div class="step"><div class="step-num">04</div><div class="step-content"><h3>Weekly Intel Pipeline</h3><p>Curated market, client, and opportunity intel delivered on your schedule. X monitoring + property research + CRM hygiene.</p></div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-content"><h3>Care & Operate</h3><p>Optional: ongoing care plans keep your builds running. Or upgrade to a full retainer for 24/7 AI operations.</p></div></div>
 
-    <div class="step"><div class="step-num">05</div><div class="step-content"><h3>Speed-to-Lead Automation</h3><p>Instant response workflows. Lead qualification. Follow-up sequences. Your voice, your timing, automated.</p></div></div>
-
-    <div class="step"><div class="step-num">06</div><div class="step-content"><h3>Transaction Coordination</h3><p>Pipeline visibility. Milestone tracking. Client communication. Nothing falls through the cracks.</p></div></div>
-
-    <div class="step"><div class="step-num">07</div><div class="step-content"><h3>Workshop & Content Engine</h3><p>Event support, slide decks, follow-up automation. Turn every workshop into pipeline.</p></div></div>
-
-    <div class="step"><div class="step-num">08</div><div class="step-content"><h3>Ongoing Partnership</h3><p>Monthly optimization. New tool evaluation. Quarterly roadmap reviews. Your AI CoS evolves with your business.</p></div></div>
+    <div class="step"><div class="step-num">05</div><div class="step-content"><h3>Scale</h3><p>Fractional AI Officer for teams. Per-seat deployment. Your AI department.</p></div></div>
 
   </div>
 
-  <!-- COMPARE / THREE PHASES -->
+  <!-- THREE PHASES / THE METHOD -->
 
-  <div id="compare" class="section container">
+  <div id="phases" class="section container">
 
     <div style="text-align:center;margin-bottom:48px;">
 
@@ -428,7 +756,7 @@
 
     <div class="phase-grid">
 
-      <!-- PHASE 1: ASSESSMENT -->
+      <!-- PHASE 1: BLUEPRINT -->
 
       <div class="phase-card phase-1">
 
@@ -440,13 +768,13 @@
 
         <div>
 
-          <h3 class="phase-name">Assessment</h3>
+          <h3 class="phase-name">The Blueprint</h3>
 
-          <div class="phase-tagline">The Blueprint</div>
+          <div class="phase-tagline">Assessment</div>
 
         </div>
 
-        <div class="phase-price-tag">Starting at $500</div>
+        <div class="phase-price-tag">Solo $250 • Team $500–1K • Business $1,500</div>
 
         <div class="phase-analogy">
 
@@ -460,19 +788,19 @@
 
         <ul class="phase-deliverables">
 
-          <li><span class="phase-check">✓</span><span>AI Marketing Score — platform + review + content audit</span></li>
+          <li><span class="phase-check">✓</span><span>Workflow audit</span></li>
 
-          <li><span class="phase-check">✓</span><span>Full tech stack audit</span></li>
+          <li><span class="phase-check">✓</span><span>Tech stack review</span></li>
 
-          <li><span class="phase-check">✓</span><span>3 personalized quick wins you can act on this week</span></li>
+          <li><span class="phase-check">✓</span><span>3-10 AI opportunities</span></li>
 
-          <li><span class="phase-check">✓</span><span>Effort vs. Impact matrix</span></li>
+          <li><span class="phase-check">✓</span><span>ROI projections</span></li>
 
-          <li><span class="phase-check">✓</span><span>30 / 90 / 180 day AI roadmap</span></li>
-
-          <li><span class="phase-check">✓</span><span>Draft AI Acceptable Use Policy framework</span></li>
+          <li><span class="phase-check">✓</span><span>Implementation roadmap</span></li>
 
         </ul>
+
+        <div style="font-size:11px;color:#7dd3fc;margin:4px 0 8px;">Assessment fee credits toward any build or retainer — it's a down payment, not a separate cost.</div>
 
         <a href="https://cal.com/thekapowsincompany/ai-assessment-report-call" class="btn btn-secondary" style="width:100%;font-size:13px;">Start with an Assessment</a>
 
@@ -496,7 +824,7 @@
 
       </div>
 
-      <!-- PHASE 2: SECOND BRAIN -->
+      <!-- PHASE 2: CONSTRUCTION -->
 
       <div class="phase-card phase-2">
 
@@ -504,23 +832,23 @@
 
         <div class="phase-badge">Phase 2</div>
 
-        <div class="phase-icon">🧠</div>
+        <div class="phase-icon">🛠️</div>
 
         <div>
 
-          <h3 class="phase-name">Second Brain Build</h3>
+          <h3 class="phase-name">The Construction</h3>
 
-          <div class="phase-tagline">The Structure</div>
+          <div class="phase-tagline">One-Time Builds</div>
 
         </div>
 
-        <div class="phase-price-tag">Starting at $2,500</div>
+        <div class="phase-price-tag">Builds $500 – $5,000</div>
 
         <div class="phase-analogy">
 
           <div class="phase-analogy-label">🏛️ Think of it like this</div>
 
-          <p>The structure being built — shelving, walls, books, and organization laid out.</p>
+          <p>Building the physical library — the shelving, walls, books, systems, wiring. Every part constructed and placed where it belongs. You own the structure when we're done.</p>
 
         </div>
 
@@ -528,21 +856,19 @@
 
         <ul class="phase-deliverables">
 
-          <li><span class="phase-check">✓</span><span>Searchable AI knowledge base from your existing content</span></li>
+          <li><span class="phase-check">✓</span><span>Speed-to-Lead, CRM, Websites, Phone Agents</span></li>
 
-          <li><span class="phase-check">✓</span><span>Automated pipelines and lead workflows</span></li>
+          <li><span class="phase-check">✓</span><span>Second Brain / Knowledge Base</span></li>
 
-          <li><span class="phase-check">✓</span><span>CRM integration and data organization</span></li>
+          <li><span class="phase-check">✓</span><span>Workflow & Content Systems</span></li>
 
-          <li><span class="phase-check">✓</span><span>Custom query interface — Telegram or web</span></li>
-
-          <li><span class="phase-check">✓</span><span>Training session + 30-day support window</span></li>
+          <li><span class="phase-check">✓</span><span>Optional Care Plans from $99/mo</span></li>
 
         </ul>
 
-        <a href="https://buy.stripe.com/28EcN5fKR7eA4QL4j0gUM0l" class="btn btn-secondary" style="width:100%;font-size:13px;">Build Second Brain</a>
+        <a href="https://cal.com/thekapowsincompany/ai-assessment-report-call" class="btn btn-secondary" style="width:100%;font-size:13px;">Book a Build Consultation</a>
 
-        <div class="phase-summary">You leave with the infrastructure running.</div>
+        <div class="phase-summary">You leave with the infrastructure you own.</div>
 
       </div>
 
@@ -562,7 +888,7 @@
 
       </div>
 
-      <!-- PHASE 3: AI CHIEF OF STAFF -->
+      <!-- PHASE 3: LIBRARIAN STAFF -->
 
       <div class="phase-card phase-3">
 
@@ -576,19 +902,19 @@
 
         <div>
 
-          <h3 class="phase-name">AI Chief of Staff</h3>
+          <h3 class="phase-name">The Librarian Staff</h3>
 
-          <div class="phase-tagline">The Librarian Staff</div>
+          <div class="phase-tagline">Ongoing Operations</div>
 
         </div>
 
-        <div class="phase-price-tag">From $497 / month</div>
+        <div class="phase-price-tag">Retainers from $75/mo • Fractional $2,500–5K/mo</div>
 
         <div class="phase-analogy">
 
           <div class="phase-analogy-label">🏛️ Think of it like this</div>
 
-          <p>The full-time librarian staff — updates books, deals with customers, teaches classes, keeps the lights on, and goes and does tasks outside.</p>
+          <p>Full librarian staff — curator, operations managers, program directors, head librarian. They update the books, maintain everything, deal with customers, teach classes, keep the lights on 24/7, and go do tasks outside the library.</p>
 
         </div>
 
@@ -596,21 +922,17 @@
 
         <ul class="phase-deliverables">
 
-          <li><span class="phase-check">✓</span><span>24/7 lead response — never misses an inquiry</span></li>
+          <li><span class="phase-check">✓</span><span>Agent retainers (Launchpad to Full Ops)</span></li>
 
-          <li><span class="phase-check">✓</span><span>Daily social posting across all platforms</span></li>
+          <li><span class="phase-check">✓</span><span>Fractional AI Officer for teams</span></li>
 
-          <li><span class="phase-check">✓</span><span>Weekly touch-plan: who to call, what to say</span></li>
+          <li><span class="phase-check">✓</span><span>24/7 coverage + per-seat deployment</span></li>
 
-          <li><span class="phase-check">✓</span><span>AI calendar booking + monthly market reports</span></li>
-
-          <li><span class="phase-check">✓</span><span>Bailey — your AI phone agent, 24/7</span></li>
-
-          <li><span class="phase-check">✓</span><span>Second Brain included — the system never stops</span></li>
+          <li><span class="phase-check">✓</span><span>Weekly strategy + compliance controls</span></li>
 
         </ul>
 
-        <a href="https://cal.com/thekapowsincompany/discovery" class="btn btn-primary" style="width:100%;font-size:13px;">Book a Discovery Call</a>
+        <a href="https://cal.com/thekapowsincompany/ai-assessment-report-call" class="btn btn-primary" style="width:100%;font-size:13px;">Book a Discovery Call</a>
 
         <div class="phase-summary">You leave with a system that works while you sleep.</div>
 
@@ -634,59 +956,441 @@
 
     </div>
 
-    <p style="text-align:center;color:var(--text-dim);font-size:12px;margin-top:20px;">Each phase stands alone. The Assessment credit ($500) applies to any Phase 2 or 3 service booked within 60 days.</p>
+    <p style="text-align:center;color:var(--text-dim);font-size:12px;margin-top:20px;">Each phase stands alone. Assessment fees credit toward builds or retainers booked within 60 days.</p>
+
+  </div>
+
+  <!-- PHASE 2 DETAILS: BUILDS + CARE -->
+
+  <div class="section-sm container">
+
+    <div style="text-align:center;margin-bottom:24px;">
+
+      <div style="color:#a5b4fc;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Phase 2</div>
+
+      <h3 style="font-size:24px;margin:0;">One-Time Builds</h3>
+
+    </div>
+
+    <div class="build-grid">
+
+      <div class="build-item">Speed-to-Lead Agent <span class="price">$1,500–3,000</span></div>
+
+      <div class="build-item">CRM Automation <span class="price">$1,500–2,500</span></div>
+
+      <div class="build-item">Website + AI Lead Capture <span class="price">$500–1,000</span></div>
+
+      <div class="build-item">AI Phone Agent <span class="price">$1,500</span></div>
+
+      <div class="build-item">Second Brain / Knowledge Base <span class="price">$2,500</span></div>
+
+      <div class="build-item">Workflow Automation <span class="price">$1,000–5,000</span></div>
+
+      <div class="build-item">Social Media Content System <span class="price">$1,000–2,000</span></div>
+
+      <div class="build-item build-custom">Custom Build? We scope it. Free consultation.</div>
+
+    </div>
+
+    <div style="margin-top:28px;">
+
+      <div style="text-align:center;margin-bottom:12px;">
+
+        <div style="color:#a5b4fc;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;">Care Plans — keep everything running</div>
+
+      </div>
+
+      <div class="care-grid">
+
+        <div class="care-card">
+
+          <div><strong>Basic</strong></div>
+
+          <div style="color:#2dd4bf;font-weight:600;margin:2px 0 4px;">$99/mo</div>
+
+          <div style="font-size:11px;color:var(--text-muted);">Monthly check-in, adjustments, bug fixes</div>
+
+        </div>
+
+        <div class="care-card popular">
+
+          <div><span class="care-badge">RECOMMENDED</span></div>
+
+          <div><strong>Standard</strong></div>
+
+          <div style="color:#34d399;font-weight:600;margin:2px 0 4px;">$199/mo</div>
+
+          <div style="font-size:11px;color:var(--text-muted);">Weekly monitoring, updates, KB maintenance</div>
+
+        </div>
+
+        <div class="care-card">
+
+          <div><strong>Full</strong></div>
+
+          <div style="color:#2dd4bf;font-weight:600;margin:2px 0 4px;">$299/mo</div>
+
+          <div style="font-size:11px;color:var(--text-muted);">Proactive optimization, new features, quarterly review</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:20px;">
+
+      <a href="https://cal.com/thekapowsincompany/ai-assessment-report-call" class="btn btn-secondary" style="font-size:13px;">Book a Build Consultation</a>
+
+    </div>
+
+  </div>
+
+  <!-- PHASE 3 DETAILS: RETAINERS + FRACTIONAL -->
+
+  <div class="section-sm container">
+
+    <div style="text-align:center;margin-bottom:24px;">
+
+      <div style="color:#34d399;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Phase 3</div>
+
+      <h3 style="font-size:24px;margin:0;">Retainers & Fractional AI Officer</h3>
+
+    </div>
+
+    <div style="margin-bottom:8px;font-size:12px;color:var(--text-muted);text-align:center;">For real estate agents and solo operators</div>
+
+    <div class="retainer-grid">
+
+      <div class="retainer-card">
+
+        <div class="name">Launchpad</div>
+
+        <div class="price-line">$75/mo</div>
+
+        <div class="setup">(setup $750)</div>
+
+        <div class="features">Morning briefing, hot lead alerts, follow-up tracker, email drafts, knowledge vault</div>
+
+      </div>
+
+      <div class="retainer-card popular">
+
+        <div class="name">Morning Sweep <span style="background:#34d399;color:#0a0e1a;font-size:8px;padding:0 3px;border-radius:2px;font-weight:700;">POPULAR</span></div>
+
+        <div class="price-line">$150/mo</div>
+
+        <div class="setup">(setup $1,500)</div>
+
+        <div class="features">+ triple sweep, lead triage, email triage, calendar intel, listing content</div>
+
+      </div>
+
+      <div class="retainer-card">
+
+        <div class="name">Deal Machine</div>
+
+        <div class="price-line">$200/mo</div>
+
+        <div class="setup">(setup $2,500)</div>
+
+        <div class="features">+ CRM sync, pipeline tracking, auto follow-ups, churn alerts</div>
+
+      </div>
+
+      <div class="retainer-card">
+
+        <div class="name">Full Operations</div>
+
+        <div class="price-line">$350/mo</div>
+
+        <div class="setup">(setup $5,000)</div>
+
+        <div class="features">+ transaction coordination, call transcription, voice, social, team coordination, analytics</div>
+
+      </div>
+
+    </div>
+
+    <!-- Fractional AI Officer -->
+
+    <div class="frac-card">
+
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+
+        <div>
+
+          <div style="font-size:13px;color:#6ee7b7;font-weight:700;letter-spacing:0.05em;">THE HEAD LIBRARIAN</div>
+
+          <div style="font-size:20px;font-weight:700;margin:2px 0 4px;">Fractional AI Officer</div>
+
+          <div style="color:#a7f3d0;font-weight:600;">$2,500–5,000 / month</div>
+
+        </div>
+
+        <div style="flex:1;min-width:220px;font-size:13px;color:var(--text-muted);">
+
+          Not another tool. A fractional hire that costs less than one employee and serves your entire organization.
+
+        </div>
+
+      </div>
+
+      <div class="frac-features">
+
+        <div>✓ Dedicated AI ops officer</div>
+
+        <div>✓ Per-seat deployment</div>
+
+        <div>✓ Multi-dept coordination</div>
+
+        <div>✓ Custom integrations</div>
+
+        <div>✓ Weekly strategy calls</div>
+
+        <div>✓ Priority support</div>
+
+        <div>✓ Compliance controls</div>
+
+        <div>✓ Quarterly ROI review</div>
+
+      </div>
+
+      <div style="font-size:12px;color:#a7f3d0;margin-top:6px;padding-top:8px;border-top:1px solid rgba(52,211,153,0.2);">
+
+        One admin hire = $45–65K/yr + benefits + turnover. Fractional AI Officer = $30–60K/yr, runs 24/7, scales with your team.
+
+      </div>
+
+      <div style="margin-top:12px;">
+
+        <a href="https://cal.com/thekapowsincompany/ai-assessment-report-call" class="btn btn-primary" style="font-size:13px;padding:10px 20px;">Book a Discovery Call</a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ADD-ONS -->
+
+  <div id="addons" class="section-sm container">
+
+    <div style="text-align:center;margin-bottom:24px;">
+
+      <div style="color:#f59e0b;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Enhancements</div>
+
+      <h3 style="font-size:24px;margin:0;">Add-Ons</h3>
+
+    </div>
+
+    <div class="addon-list">
+
+      <div><span>Social Media Management</span> <span style="color:#2dd4bf;font-weight:600;">+$50/mo</span></div>
+
+      <div><span>Call Transcription</span> <span style="color:#2dd4bf;font-weight:600;">+$15/mo</span></div>
+
+      <div><span>Premium Voice</span> <span style="color:#2dd4bf;font-weight:600;">+$15/mo</span></div>
+
+      <div><span>Voice Cloning</span> <span style="color:#2dd4bf;font-weight:600;">+$30/mo</span></div>
+
+      <div><span>Lead Capture Pages</span> <span style="color:#2dd4bf;font-weight:600;">+$75/mo</span></div>
+
+      <div><span>Missing Doc Chaser</span> <span style="color:#2dd4bf;font-weight:600;">+$75/mo</span></div>
+
+    </div>
+
+    <p style="text-align:center;margin-top:16px;font-size:13px;color:var(--text-dim);">Available with any retainer or build. Billed monthly.</p>
+
+  </div>
+
+  <!-- AI CONCIERGE -->
+
+  <div id="concierge" class="section-sm container" style="border-top:1px solid var(--border);">
+
+    <div style="max-width:720px;margin:0 auto;text-align:center;">
+
+      <div style="color:#a5b4fc;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Learning & Partnership</div>
+
+      <h3 style="font-size:24px;margin:0 0 8px;">AI Concierge — Left-seat / Right-seat</h3>
+
+      <p style="color:var(--text-muted);max-width:520px;margin:0 auto 16px;">Want to learn while we build? Choose how hands-on you want to be.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:left;">
+
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+
+          <div style="font-weight:700;color:#a5b4fc;margin-bottom:4px;">Left-seat</div>
+
+          <div style="font-size:13px;color:var(--text-muted);">You drive, we guide. Hands-on coaching and real-time collaboration as we build your systems together.</div>
+
+        </div>
+
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+
+          <div style="font-weight:700;color:#a5b4fc;margin-bottom:4px;">Right-seat</div>
+
+          <div style="font-size:13px;color:var(--text-muted);">We drive, you watch and learn. Full implementation with complete knowledge transfer and documentation.</div>
+
+        </div>
+
+      </div>
+
+      <p style="margin-top:12px;font-size:13px;color:var(--text-dim);">Same build pricing, with coaching time factored in.</p>
+
+    </div>
+
+  </div>
+
+  <!-- PROGRAMS & CONSULTING -->
+
+  <div id="programs" class="section container">
+
+    <div style="text-align:center;margin-bottom:32px;">
+
+      <div style="color:#f59e0b;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Beyond Retainers</div>
+
+      <h2 style="font-size:28px;margin:0;">Programs & Consulting</h2>
+
+    </div>
+
+    <div class="program-grid">
+
+      <div class="program-card">
+
+        <h4>AI Agent Mentoring</h4>
+
+        <div style="font-size:22px;font-weight:700;color:#a5b4fc;margin:8px 0;">$2,500</div>
+
+        <p style="font-size:13px;color:var(--text-muted);margin:0;">4 weeks guided coaching. Learn to build, deploy and maintain your own agents using our proven frameworks.</p>
+
+      </div>
+
+      <div class="program-card">
+
+        <h4>Team AI Deployment</h4>
+
+        <div style="font-size:22px;font-weight:700;color:#a5b4fc;margin:8px 0;">From $5,000</div>
+
+        <p style="font-size:13px;color:var(--text-muted);margin:0;">Per-seat deployment for your team. Shared skills, admin controls, onboarding, and ongoing coordination.</p>
+
+      </div>
+
+      <div class="program-card">
+
+        <h4>Consulting</h4>
+
+        <div style="font-size:22px;font-weight:700;color:#a5b4fc;margin:8px 0;">$250/hr</div>
+
+        <p style="font-size:13px;color:var(--text-muted);margin:0;">Custom strategy, complex integrations, compliance architecture, vendor selection, and executive advisory.</p>
+
+      </div>
+
+    </div>
 
   </div>
 
   <!-- INFRASTRUCTURE -->
 
-  <div class="section container">
+  <div id="infrastructure" class="section container">
 
-    <div style="max-width:620px;margin:0 auto 40px;text-align:center;">
+    <div style="text-align:center;margin-bottom:32px;">
 
-      <h2 style="font-size:28px;margin:0 0 12px;">Your Infrastructure, Your Data</h2>
+      <h2 style="font-size:28px;margin:0 0 12px;">Infrastructure That Fits You</h2>
 
-      <p style="color:var(--text-muted);font-size:15px;">Dedicated Hetzner server in Hillsboro, OR. Tailscale-only access. No shared resources. No data leakage.</p>
-
-    </div>
-
-    <div style="max-width:720px;margin:0 auto;">
-
-      <div class="infra-item">
-
-        <div class="infra-label">Data Isolation</div>
-
-        <div style="color:var(--text-muted);font-size:15px;">Your client info never crosses paths with another agent's. Period.</div>
-
-      </div>
-
-      <div class="infra-item">
-
-        <div class="infra-label">Performance Isolation</div>
-
-        <div style="color:var(--text-muted);font-size:15px;">A heavy day for someone else doesn't slow your AI down.</div>
-
-      </div>
-
-      <div class="infra-item">
-
-        <div class="infra-label">Yours to Keep</div>
-
-        <div style="color:var(--text-muted);font-size:15px;">If you ever leave, the server and its data go with you.</div>
-
-      </div>
+      <p style="color:var(--text-muted);font-size:15px;max-width:620px;margin:0 auto;">No one-size-fits-all. Two paths depending on your scale and data requirements.</p>
 
     </div>
 
-    <div style="text-align:center;margin-top:24px;font-size:12px;color:var(--text-dim);">
+    <div class="infra-grid">
 
-      Infrastructure costs billed at actual cost. Server ~$25-30/mo. LLM usage $40-300/mo depending on tier. Transparent passthrough — no markup.
+      <div class="infra-tier">
+
+        <h4>Solo agents & independents</h4>
+
+        <ul>
+
+          <li>Cloud connectors and plug-ins — integrates with your existing tools</li>
+
+          <li>No hardware, no servers to manage</li>
+
+          <li>Works through Telegram, your CRM, your email</li>
+
+        </ul>
+
+      </div>
+
+      <div class="infra-tier">
+
+        <h4>Teams, brokerages & deep-dive clients</h4>
+
+        <ul>
+
+          <li>Dedicated server or on-prem hardware</li>
+
+          <li>Your data stays on your infrastructure</li>
+
+          <li>Secure VPN — zero exposed ports</li>
+
+          <li>Full isolation, scalable</li>
+
+        </ul>
+
+      </div>
 
     </div>
 
   </div>
 
-  <!-- REFERRAL -->
+  <!-- ROI -->
+
+  <div id="roi" class="section container">
+
+    <div style="text-align:center;margin-bottom:28px;">
+
+      <div style="color:#34d399;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Real Results</div>
+
+      <h2 style="font-size:28px;margin:0;">ROI That Pays for Itself</h2>
+
+    </div>
+
+    <div class="roi-grid">
+
+      <div class="roi-card">
+
+        <div class="big">1 deal</div>
+
+        <div class="label">One-Time Build</div>
+
+        <p>A $2,500 build pays for itself with one extra closing (avg WA commission ~$15K).</p>
+
+      </div>
+
+      <div class="roi-card">
+
+        <div class="big">33× ROI</div>
+
+        <div class="label">RE Retainer</div>
+
+        <p>Morning Sweep $150/mo → $1,800/yr. One extra deal per quarter = $60K/yr.</p>
+
+      </div>
+
+      <div class="roi-card">
+
+        <div class="big">10-20×</div>
+
+        <div class="label">Fractional AI Officer</div>
+
+        <p>10-person team. 1 extra deal per agent per quarter = $600K on a $60K investment.</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- REFERRAL (kept as-is) -->
 
   <div class="section container">
 
@@ -730,7 +1434,7 @@
 
   </div>
 
-  <!-- PARTNER PROGRAM -->
+  <!-- PARTNER PROGRAM (kept as-is) -->
 
   <div id="partner" class="section container">
 
@@ -809,4 +1513,3 @@
 </body>
 
 </html>
-

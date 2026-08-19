@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing — Kapowsin AI Chief of Staff</title>
+  <meta name="description" content="Service tiers from $75/mo Launchpad to Fractional AI Officer. AI Chief of Staff for Real Estate Professionals, Mortgage Lenders & Service Businesses." />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    @import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap');
+
+    :root {
+      --bg: #0a0e1a;
+      --surface: #111827;
+      --border: #374151;
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+      --text-dim: #6b7280;
+      --teal: #2dd4bf;
+      --cyan: #22d3ee;
+      --green: #34d399;
+      /* Pricing component vars */
+      --card-bg: #111827;
+      --card-border: #1e293b;
+      --text-primary: #e2e8f0;
+      --text-subtle: #64748b;
+      --accent-teal: #06b6d4;
+      --accent-green: #10b981;
+      --font-sans: 'Geist', system-ui, -apple-system, sans-serif;
+      --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Outfit", "DM Sans", system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    h1, h2, h3, .font-display {
+      font-family: "Satoshi", "Outfit", system-ui, sans-serif;
+      font-weight: 600; letter-spacing: -0.02em;
+    }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(10, 14, 26, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; max-width: 1080px; margin: 0 auto; }
+    .logo { font-family: "Satoshi", sans-serif; font-weight: 700; font-size: 20px; color: var(--teal); text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--teal); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 24px; border-radius: 12px; font-size: 14px; font-weight: 600;
+      text-decoration: none; transition: all 0.15s ease; border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--teal); color: #0a0e1a; }
+    .btn-primary:hover { background: #14b8a6; transform: translateY(-1px); }
+
+    /* Footer */
+    .footer {
+      padding: 24px; font-size: 13px; color: var(--text-dim);
+      border-top: 1px solid var(--border); margin-top: 40px;
+    }
+
+    /* ── Pricing Component ── */
+    .kapowsin-pricing {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      padding: 60px 20px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .kapowsin-pricing * { box-sizing: border-box; }
+
+    .pricing-header { text-align: center; margin-bottom: 32px; }
+    .pricing-header h1 {
+      font-family: var(--font-serif); font-size: 32px; font-weight: 400;
+      margin: 0 0 6px; color: var(--text-primary);
+    }
+    .pricing-header .subtitle {
+      font-family: var(--font-mono); font-size: 9px;
+      letter-spacing: 0.18em; color: var(--text-subtle); text-transform: uppercase;
+    }
+
+    .tiers { display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; }
+
+    .tier-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 8px; padding: 20px 24px;
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .tier-card:hover {
+      transform: translateY(-2px); border-color: #334155;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .tier-card.popular {
+      border-color: var(--accent-green);
+      background: rgba(16, 185, 129, 0.06);
+      box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.15);
+    }
+    .tier-card.popular:hover {
+      border-color: var(--accent-green);
+      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.2);
+    }
+
+    .tier-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; margin-bottom: 12px;
+    }
+    .tier-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 18px; border-radius: 3px;
+      font-family: var(--font-mono); font-size: 8px; font-weight: 600;
+      color: #0a0f1a; flex-shrink: 0;
+    }
+    .tier-badge.t5 { background: var(--accent-teal); }
+    .tier-badge.t4, .tier-badge.t3, .tier-badge.t1 { background: #64748b; }
+    .tier-badge.t2 { background: var(--accent-green); }
+
+    .tier-name { font-size: 16px; font-weight: 600; margin-left: 10px; flex: 1; }
+    .tier-name.t2 { color: var(--accent-green); }
+    .tier-name.t5 { color: var(--accent-teal); }
+
+    .premium-tag {
+      font-family: var(--font-mono); font-size: 7px; font-weight: 600;
+      letter-spacing: 0.05em; background: var(--accent-teal); color: #0a0f1a;
+      padding: 2px 6px; border-radius: 3px; align-self: flex-start;
+      margin-left: auto; margin-top: 2px;
+    }
+    .popular-badge {
+      font-family: var(--font-mono); font-size: 7px; font-weight: 600;
+      letter-spacing: 0.1em; background: var(--accent-green); color: #0a0f1a;
+      padding: 2px 8px; border-radius: 3px; margin-left: 10px; align-self: center;
+    }
+
+    .tier-price { text-align: right; flex-shrink: 0; margin-left: 16px; }
+    .tier-price .amount { font-size: 18px; font-weight: 600; line-height: 1; }
+    .tier-price .amount.t2 { color: var(--accent-green); }
+    .tier-price .amount.t5 { color: var(--accent-teal); }
+    .tier-price .setup {
+      font-family: var(--font-mono); font-size: 9px;
+      color: var(--text-subtle); display: block; margin-top: 2px;
+    }
+
+    .tier-headline { font-size: 13px; font-weight: 600; margin: 8px 0 4px; color: var(--text-primary); }
+    .tier-features {
+      font-family: var(--font-mono); font-size: 10px;
+      line-height: 1.5; color: var(--text-muted); margin-bottom: 8px;
+    }
+    .tier-roi {
+      font-family: var(--font-mono); font-size: 10px;
+      color: var(--accent-green); font-weight: 500;
+    }
+
+    .tier-cta {
+      display: block; width: 100%; margin-top: 14px;
+      padding: 10px 16px; font-family: var(--font-sans);
+      font-size: 13px; font-weight: 600; border-radius: 6px;
+      border: none; cursor: pointer; text-align: center;
+      text-decoration: none; transition: all 0.15s ease;
+    }
+    .tier-cta.primary { background: var(--accent-green); color: #0a0f1a; }
+    .tier-cta.primary:hover { background: #34d399; transform: translateY(-1px); }
+    .tier-cta.secondary { background: var(--accent-teal); color: #0a0f1a; }
+    .tier-cta.secondary:hover { background: #22d3ee; }
+    .tier-cta.outline { background: transparent; border: 1px solid var(--card-border); color: var(--text-primary); }
+    .tier-cta.outline:hover { border-color: var(--accent-teal); color: var(--accent-teal); }
+
+    /* Entry Points */
+    .entry-points { margin-top: 32px; }
+    .entry-header {
+      font-family: var(--font-mono); font-size: 9px;
+      letter-spacing: 0.18em; color: var(--text-subtle);
+      text-align: center; margin-bottom: 16px; text-transform: uppercase;
+    }
+    .entry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .entry-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 8px; padding: 18px 20px;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .entry-card:hover { transform: translateY(-2px); border-color: #334155; }
+    .entry-card.highlight {
+      border-color: var(--accent-teal);
+      background: rgba(6, 182, 212, 0.06);
+    }
+    .entry-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .entry-title.highlight { color: var(--accent-teal); }
+    .entry-price { font-family: var(--font-mono); font-size: 11px; font-weight: 600; margin-bottom: 6px; }
+    .entry-price.highlight { color: var(--accent-teal); }
+    .entry-price.free { color: var(--accent-green); }
+    .entry-desc {
+      font-family: var(--font-mono); font-size: 10px;
+      color: var(--text-muted); margin-bottom: 12px; line-height: 1.4;
+    }
+    .entry-cta {
+      display: inline-block; padding: 6px 14px; font-size: 12px;
+      font-weight: 600; border-radius: 5px; text-decoration: none;
+      cursor: pointer; transition: all 0.15s ease;
+    }
+    .entry-cta.teal { background: var(--accent-teal); color: #0a0f1a; }
+    .entry-cta.teal:hover { background: #22d3ee; }
+    .entry-cta.green { background: var(--accent-green); color: #0a0f1a; }
+    .entry-cta.green:hover { background: #34d399; }
+    .entry-cta.outline { background: transparent; border: 1px solid var(--card-border); color: var(--text-primary); }
+    .entry-cta.outline:hover { border-color: var(--accent-teal); color: var(--accent-teal); }
+
+    .pricing-footer {
+      margin-top: 40px; text-align: center;
+      font-family: var(--font-mono); font-size: 8px; color: #334155; line-height: 1.6;
+    }
+    .pricing-footer .tagline {
+      font-family: var(--font-serif); font-size: 11px;
+      font-style: italic; color: var(--accent-teal); margin-top: 4px;
+    }
+
+    .kapowsin-pricing .tier-card.selected {
+      outline: 2px solid #10b981; outline-offset: 2px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .kapowsin-pricing { padding: 24px 12px; }
+      .pricing-header h1 { font-size: 22px; }
+      .tier-card { padding: 16px 18px; }
+      .tier-header { flex-wrap: wrap; gap: 4px; }
+      .tier-price { width: 100%; text-align: left; margin-left: 32px; margin-top: -4px; }
+      .tier-price .amount { font-size: 16px; }
+      .entry-grid { grid-template-columns: 1fr; gap: 12px; }
+      .tier-name { font-size: 15px; }
+      .tier-features { font-size: 9.5px; }
+    }
+    @media (max-width: 480px) {
+      .tier-cta { font-size: 12px; padding: 9px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="logo">Kapowsin AI</a>
+      <div class="nav-links">
+        <a href="/#journey">Journey</a>
+        <a href="/#phases">The Method</a>
+        <a href="/pricing.html" class="active">Pricing</a>
+        <a href="/#infrastructure">Infrastructure</a>
+        <a href="/#roi">ROI</a>
+        <a href="/#partner">Partners</a>
+      </div>
+      <a href="https://cal.com/thekapowsincompany/discovery" class="btn btn-primary" style="padding:8px 18px;font-size:13px;">Book Discovery Call</a>
+    </div>
+  </nav>
+
+  <!-- BAILEY BANNER -->
+  <div style="background:linear-gradient(90deg,rgba(45,212,191,0.12),rgba(34,211,238,0.08));border-bottom:1px solid rgba(45,212,191,0.25);padding:12px 24px;text-align:center;">
+    <div style="max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;">
+      <span style="font-size:14px;color:#e5e7eb;">📞 <strong>Free Mini AI Assessment</strong> — Call Bailey and we'll find 1-3 workflows to automate today.</span>
+      <a href="tel:+12533405524" style="display:inline-flex;align-items:center;gap:6px;background:#2dd4bf;color:#0a0e1a;padding:6px 16px;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;">📱 (253) 340-5524</a>
+    </div>
+  </div>
+
+  <!-- PRICING COMPONENT -->
+  <div class="kapowsin-pricing" id="pricing">
+    <div class="pricing-header">
+      <h1>From One Workflow to Your Full AI Department</h1>
+      <div class="subtitle">SERVICE TIERS · KAPOWSIN BUSINESS SOLUTIONS</div>
+    </div>
+
+    <div class="tiers">
+      <!-- T1 Launchpad -->
+      <div class="tier-card" data-tier="t1">
+        <div class="tier-header">
+          <div style="display:flex; align-items:center;">
+            <div class="tier-badge t1">T1</div>
+            <div class="tier-name">Launchpad</div>
+          </div>
+          <div class="tier-price">
+            <div class="amount">$75<span style="font-size:10px; color:#64748b;">/mo</span></div>
+            <div class="setup">setup: $750</div>
+          </div>
+        </div>
+        <div class="tier-headline">Your first AI pipeline. Set it, watch it work.</div>
+        <div class="tier-features">Morning briefing · hot lead alerts + drafts · follow-up tracker · email drafts in your voice · knowledge vault</div>
+        <div class="tier-roi">Less than one coffee a day.</div>
+        <a href="https://cal.com/thekapowsincompany/discovery" class="tier-cta outline">Get Started — Launchpad</a>
+      </div>
+
+      <!-- T2 Morning Sweep (POPULAR) -->
+      <div class="tier-card popular" data-tier="t2">
+        <div class="tier-header">
+          <div style="display:flex; align-items:center;">
+            <div class="tier-badge t2">T2</div>
+            <div class="tier-name t2">Morning Sweep</div>
+            <div class="popular-badge">POPULAR</div>
+          </div>
+          <div class="tier-price">
+            <div class="amount t2">$150<span style="font-size:10px; color:#64748b;">/mo</span></div>
+            <div class="setup">setup: $1,500</div>
+          </div>
+        </div>
+        <div class="tier-headline">Every morning starts with your deals sorted.</div>
+        <div class="tier-features">Everything below + triple sweep (AM/PM/EVE) · lead triage + scoring · email triage + inbox org · calendar intelligence · listing content</div>
+        <div class="tier-roi">1 extra deal/quarter = $60K return on $1,800/yr.</div>
+        <a href="https://cal.com/thekapowsincompany/discovery" class="tier-cta primary">Get Started — Most Popular</a>
+      </div>
+
+      <!-- T3 Deal Machine -->
+      <div class="tier-card" data-tier="t3">
+        <div class="tier-header">
+          <div style="display:flex; align-items:center;">
+            <div class="tier-badge t3">T3</div>
+            <div class="tier-name">Deal Machine</div>
+          </div>
+          <div class="tier-price">
+            <div class="amount">$200<span style="font-size:10px; color:#64748b;">/mo</span></div>
+            <div class="setup">setup: $2,500</div>
+          </div>
+        </div>
+        <div class="tier-headline">Your CRM finally works both ways.</div>
+        <div class="tier-features">Everything below + CRM integration (bi-directional) · pipeline tracking + velocity · automated follow-up sequences · deal alerts</div>
+        <div class="tier-roi">Replaces $30K/yr in manual follow-up labor.</div>
+        <a href="https://cal.com/thekapowsincompany/discovery" class="tier-cta secondary">Get Started — Deal Machine</a>
+      </div>
+
+      <!-- T4 Command Center -->
+      <div class="tier-card" data-tier="t4">
+        <div class="tier-header">
+          <div style="display:flex; align-items:center;">
+            <div class="tier-badge t4">T4</div>
+            <div class="tier-name">Command Center</div>
+          </div>
+          <div class="tier-price">
+            <div class="amount">$350<span style="font-size:10px; color:#64748b;">/mo</span></div>
+            <div class="setup">setup: $5,000</div>
+          </div>
+        </div>
+        <div class="tier-headline">Total operational oversight for your team.</div>
+        <div class="tier-features">Everything below + transaction coordination · call transcription · voice interaction · social media engine · team analytics</div>
+        <div class="tier-roi">Replaces $45K/yr transaction coordinator.</div>
+        <a href="https://cal.com/thekapowsincompany/discovery" class="tier-cta outline">Get Started — Command Center</a>
+      </div>
+
+      <!-- T5 Fractional AI Officer -->
+      <div class="tier-card" data-tier="t5">
+        <div class="tier-header">
+          <div style="display:flex; align-items:center; flex-wrap: wrap;">
+            <div class="tier-badge t5">T5</div>
+            <div class="tier-name t5">Fractional AI Officer</div>
+            <div class="premium-tag">PREMIUM</div>
+          </div>
+          <div class="tier-price">
+            <div class="amount t5">$2,500–$5,000<span style="font-size:10px; color:#64748b;">/mo</span></div>
+            <div class="setup">setup: custom</div>
+          </div>
+        </div>
+        <div class="tier-headline">Your AI department. Less than one employee.</div>
+        <div class="tier-features">Everything below + dedicated AI ops officer · per-seat deployment · weekly strategy calls · custom integrations</div>
+        <div class="tier-roi">Full admin hire = $45-65K + benefits. This runs 24/7.</div>
+        <a href="https://cal.com/thekapowsincompany/discovery" class="tier-cta secondary">Get Started — Fractional AI Officer</a>
+      </div>
+    </div>
+
+    <!-- Entry Points -->
+    <div class="entry-points">
+      <div class="entry-header">ENTRY POINTS: START HERE</div>
+      <div class="entry-grid">
+        <div class="entry-card">
+          <div class="entry-title">One-Time Build</div>
+          <div class="entry-price">$500–$5,000</div>
+          <div class="entry-desc">Fix one problem. See ROI in 30 days. You own it.</div>
+          <a href="https://cal.com/thekapowsincompany/discovery" class="entry-cta outline">Start Build</a>
+        </div>
+
+        <div class="entry-card highlight">
+          <div class="entry-title highlight">AI Operations Assessment</div>
+          <div class="entry-price highlight">$250–$1,500</div>
+          <div class="entry-desc">Find your first $10K in hidden efficiency.</div>
+          <a href="https://cal.com/thekapowsincompany/ai-assessment-report-call" class="entry-cta teal">Book Assessment</a>
+        </div>
+
+        <div class="entry-card">
+          <div class="entry-title">Free Discovery / Call Bailey</div>
+          <div class="entry-price free">$0</div>
+          <div class="entry-desc">30-min call or 5-min AI phone assessment.</div>
+          <a href="tel:+12533405524" class="entry-cta green">Call Bailey: (253) 340-5524</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pricing-footer">
+      Kapowsin Business Solutions LLC · thekapowsincompany.com · (253) 240-4889<br>
+      <span class="tagline">Selling experience and accountability to operationalize your business.</span>
+    </div>
+  </div>
+
+  <!-- FINAL CTA -->
+  <div style="text-align:center;padding:48px 24px;border-top:1px solid var(--border);">
+    <h2 style="font-family:'Satoshi',sans-serif;font-size:28px;margin:0 0 12px;color:var(--text);">Ready to operationalize your business?</h2>
+    <p style="color:var(--text-muted);margin-bottom:32px;">Book a 30-minute discovery call. No pitch. Just clarity on what's possible.</p>
+    <a href="https://cal.com/thekapowsincompany/discovery" class="btn btn-primary" style="padding:14px 32px;font-size:15px;">Book Discovery Call</a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer container">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+      <div>Kapowsin Business Solutions LLC · thekapowsincompany.com</div>
+      <div>© 2026 · Washington State</div>
+    </div>
+  </div>
+
+  <script src="pricing.js"></script>
+</body>
+</html>

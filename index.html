@@ -637,6 +637,7 @@
       .nav-links { display: none; }
 
       .build-grid, .care-grid, .retainer-grid, .program-grid, .infra-grid, .roi-grid, .addon-list { grid-template-columns: 1fr; }
+      #pricing-teaser [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
 
       .frac-features { grid-template-columns: 1fr; }
 
@@ -659,6 +660,8 @@
       <div class="nav-links">
 
         <a href="#journey">Journey</a>
+
+        <a href="/pricing.html">Pricing</a>
 
         <a href="#phases">The Method</a>
 
@@ -1054,130 +1057,43 @@
 
   </div>
 
-  <!-- PHASE 3 DETAILS: RETAINERS + FRACTIONAL -->
-
-  <div class="section-sm container">
-
+  <!-- PRICING TEASER (3-card: T1, T2, T5 → /pricing.html for full) -->
+  <div class="section-sm container" id="pricing-teaser">
     <div style="text-align:center;margin-bottom:24px;">
-
       <div style="color:#34d399;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Phase 3</div>
-
-      <h3 style="font-size:24px;margin:0;">Retainers & Fractional AI Officer</h3>
-
+      <h3 style="font-size:24px;margin:0 0 6px;">Plans that scale with your business</h3>
+      <p style="font-size:13px;color:var(--text-muted);margin:0;">Start simple. Grow to a full AI department.</p>
     </div>
 
-    <div style="margin-bottom:8px;font-size:12px;color:var(--text-muted);text-align:center;">For real estate agents and solo operators</div>
-
-    <div class="retainer-grid">
-
-      <div class="retainer-card">
-
-        <div class="name">Launchpad</div>
-
-        <div class="price-line">$75/mo</div>
-
-        <div class="setup">(setup $750)</div>
-
-        <div class="features">Morning briefing, hot lead alerts, follow-up tracker, email drafts, knowledge vault</div>
-
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <!-- T1 Launchpad -->
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;transition:transform 0.15s ease;">
+        <div style="font-weight:700;font-size:13px;margin-bottom:6px;">Launchpad — T1</div>
+        <div style="color:var(--teal);font-weight:600;font-size:14px;margin-bottom:4px;">$75/mo</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);margin-bottom:12px;">Less than one coffee a day.</div>
+        <a href="https://cal.com/thekapowsincompany/discovery" class="btn btn-secondary" style="width:100%;padding:8px;font-size:12px;">Get Started</a>
       </div>
 
-      <div class="retainer-card popular">
-
-        <div class="name">Morning Sweep <span style="background:#34d399;color:#0a0e1a;font-size:8px;padding:0 3px;border-radius:2px;font-weight:700;">POPULAR</span></div>
-
-        <div class="price-line">$150/mo</div>
-
-        <div class="setup">(setup $1,500)</div>
-
-        <div class="features">+ triple sweep, lead triage, email triage, calendar intel, listing content</div>
-
+      <!-- T2 Morning Sweep (POPULAR) -->
+      <div style="background:var(--surface);border:1px solid #34d399;border-radius:10px;padding:16px;box-shadow:0 0 0 1px rgba(52,211,153,0.15);transition:transform 0.15s ease;">
+        <div style="font-weight:700;font-size:13px;color:#34d399;margin-bottom:6px;">Morning Sweep — T2 <span style="font-size:8px;background:#34d399;color:#0a0e1a;padding:1px 5px;border-radius:2px;font-weight:700;">POPULAR</span></div>
+        <div style="color:#34d399;font-weight:600;font-size:14px;margin-bottom:4px;">$150/mo</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);margin-bottom:12px;">1 extra deal/quarter = $60K return on $1,800/yr.</div>
+        <a href="https://cal.com/thekapowsincompany/discovery" class="btn btn-primary" style="width:100%;padding:8px;font-size:12px;">Get Started — Popular</a>
       </div>
 
-      <div class="retainer-card">
-
-        <div class="name">Deal Machine</div>
-
-        <div class="price-line">$200/mo</div>
-
-        <div class="setup">(setup $2,500)</div>
-
-        <div class="features">+ CRM sync, pipeline tracking, auto follow-ups, churn alerts</div>
-
+      <!-- T5 Fractional AI Officer -->
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;transition:transform 0.15s ease;">
+        <div style="font-weight:700;font-size:13px;margin-bottom:6px;">Fractional AI Officer — T5</div>
+        <div style="color:var(--teal);font-weight:600;font-size:14px;margin-bottom:4px;">$2,500–$5,000/mo</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);margin-bottom:12px;">Full admin hire = $45-65K + benefits. Runs 24/7.</div>
+        <a href="https://cal.com/thekapowsincompany/discovery" class="btn btn-secondary" style="width:100%;padding:8px;font-size:12px;">Get Started — Premium</a>
       </div>
-
-      <div class="retainer-card">
-
-        <div class="name">Full Operations</div>
-
-        <div class="price-line">$350/mo</div>
-
-        <div class="setup">(setup $5,000)</div>
-
-        <div class="features">+ transaction coordination, call transcription, voice, social, team coordination, analytics</div>
-
-      </div>
-
     </div>
 
-    <!-- Fractional AI Officer -->
-
-    <div class="frac-card">
-
-      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-
-        <div>
-
-          <div style="font-size:13px;color:#6ee7b7;font-weight:700;letter-spacing:0.05em;">THE HEAD LIBRARIAN</div>
-
-          <div style="font-size:20px;font-weight:700;margin:2px 0 4px;">Fractional AI Officer</div>
-
-          <div style="color:#a7f3d0;font-weight:600;">$2,500–5,000 / month</div>
-
-        </div>
-
-        <div style="flex:1;min-width:220px;font-size:13px;color:var(--text-muted);">
-
-          Not another tool. A fractional hire that costs less than one employee and serves your entire organization.
-
-        </div>
-
-      </div>
-
-      <div class="frac-features">
-
-        <div>✓ Dedicated AI ops officer</div>
-
-        <div>✓ Per-seat deployment</div>
-
-        <div>✓ Multi-dept coordination</div>
-
-        <div>✓ Custom integrations</div>
-
-        <div>✓ Weekly strategy calls</div>
-
-        <div>✓ Priority support</div>
-
-        <div>✓ Compliance controls</div>
-
-        <div>✓ Quarterly ROI review</div>
-
-      </div>
-
-      <div style="font-size:12px;color:#a7f3d0;margin-top:6px;padding-top:8px;border-top:1px solid rgba(52,211,153,0.2);">
-
-        One admin hire = $45–65K/yr + benefits + turnover. Fractional AI Officer = $30–60K/yr, runs 24/7, scales with your team.
-
-      </div>
-
-      <div style="margin-top:12px;">
-
-        <a href="https://cal.com/thekapowsincompany/discovery" class="btn btn-primary" style="font-size:13px;padding:10px 20px;">Book a Discovery Call</a>
-
-      </div>
-
+    <div style="text-align:center;margin-top:16px;">
+      <a href="/pricing.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--teal);text-decoration:none;">See all plans & entry points →</a>
     </div>
-
   </div>
 
   <!-- ADD-ONS -->

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are AI assistants recommending you? • Kapowsin Citation Audit</title>
+    <meta name="description" content="Free 30-second check: See which AI models actually recommend your business when buyers ask for help in your city.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --teal: #06b6d4;
+            --green: #10b981;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Space Grotesk', 'Inter', system_ui, sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+        }
+
+        .section-header {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 48px;
+            height: 3px;
+            background: linear-gradient(to right, #06b6d4, #10b981);
+            border-radius: 9999px;
+        }
+
+        .card {
+            background: #0f172a;
+            border: 1px solid #1e2937;
+            transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), border-color 0.2s;
+        }
+        
+        .card:hover {
+            border-color: #334155;
+        }
+
+        .input {
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: #e2e8f0;
+            transition: all 0.15s ease;
+        }
+        
+        .input:focus {
+            outline: none;
+            border-color: #06b6d4;
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+        }
+        
+        .select {
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: #e2e8f0;
+        }
+
+        .btn-primary {
+            background: #06b6d4;
+            color: #0a0f1a;
+            font-weight: 600;
+            transition: all 0.15s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #0891b2;
+            transform: translateY(-1px);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .grade-A { color: #10b981; }
+        .grade-B { color: #38bdf8; }
+        .grade-C { color: #fbbf24; }
+        .grade-D, .grade-F { color: #f87171; }
+
+        .score-card {
+            background: #020617;
+            border: 1px solid #1e2937;
+        }
+
+        .result-row {
+            border-bottom: 1px solid #1e2937;
+        }
+
+        .spinner {
+            border: 3px solid #1e2937;
+            border-top: 3px solid #06b6d4;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .stat {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .one-model-note {
+            background: rgba(251, 191, 36, 0.08);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-[#0a0f1a] text-slate-200 antialiased">
+    <div class="max-w-2xl mx-auto px-4 py-12">
+        <!-- Header / Hero -->
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center gap-x-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs tracking-[1px] font-medium text-slate-400 mb-4">
+                FREE • 30 SECONDS • 4 MODELS
+            </div>
+            
+            <h1 class="font-display text-4xl sm:text-5xl leading-tight tracking-tighter mb-3">
+                Are AI assistants<br>recommending you?
+            </h1>
+            <p class="text-xl text-slate-400 max-w-md mx-auto">
+                See exactly which models surface your business when buyers ask for recommendations in your city.
+            </p>
+        </div>
+
+        <!-- One Model Problem callout -->
+        <div class="one-model-note rounded-2xl px-5 py-4 mb-8 text-sm">
+            <div class="flex gap-x-3">
+                <div class="text-amber-400 mt-0.5">⚠️</div>
+                <div>
+                    <span class="font-semibold text-amber-400">The One Model Problem:</span> 
+                    Most buyers use just one AI assistant. If it never recommends you, that buyer is gone — even if you dominate Google.
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Card -->
+        <div id="form-card" class="card rounded-3xl p-8 shadow-2xl">
+            <form id="audit-form" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5">Business Name</label>
+                    <input type="text" id="company_name" name="company_name" required
+                           class="input w-full px-4 py-3 rounded-2xl text-lg placeholder:text-slate-500"
+                           placeholder="e.g. Theory Real Estate" value="">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="sm:col-span-1">
+                        <label class="block text-sm font-medium text-slate-300 mb-1.5">City</label>
+                        <input type="text" id="city" name="city" required
+                               class="input w-full px-4 py-3 rounded-2xl placeholder:text-slate-500"
+                               placeholder="Tacoma" value="">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1.5">State</label>
+                        <input type="text" id="state" name="state" value="WA" maxlength="2"
+                               class="input w-full px-4 py-3 rounded-2xl text-center font-mono uppercase tracking-widest">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1.5">Industry</label>
+                        <select id="industry" name="industry" required
+                                class="select w-full px-4 py-3 rounded-2xl text-base">
+                            <option value="real estate">Real Estate</option>
+                            <option value="mortgage">Mortgage</option>
+                            <option value="property management">Property Management</option>
+                            <option value="small business">Small Business</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" id="submit-btn"
+                        class="btn-primary w-full py-4 rounded-2xl text-lg flex items-center justify-center gap-x-2 mt-2">
+                    <span id="btn-text">Run Free Citation Check →</span>
+                </button>
+                
+                <p class="text-center text-xs text-slate-500 pt-1">
+                    No email required. Results in ~30 seconds.
+                </p>
+            </form>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="hidden card rounded-3xl p-8 text-center mt-6">
+            <div class="flex items-center justify-center gap-x-3 mb-4">
+                <div class="spinner"></div>
+                <div class="text-lg font-medium">Checking 4 AI models...</div>
+            </div>
+            <p class="text-sm text-slate-400">Grok • Claude • DeepSeek • Web Search</p>
+            <p class="text-xs text-slate-500 mt-3">This runs live queries. Please wait.</p>
+        </div>
+
+        <!-- Results / Score Card -->
+        <div id="results-card" class="hidden mt-6">
+            <div class="score-card rounded-3xl p-8">
+                <!-- Company header -->
+                <div class="mb-6">
+                    <div id="result-company" class="font-display text-2xl font-semibold text-white"></div>
+                    <div id="result-location" class="text-slate-400"></div>
+                </div>
+
+                <!-- Score -->
+                <div class="mb-6 pb-6 border-b border-slate-800">
+                    <div class="text-sm uppercase tracking-[1.5px] text-slate-400 mb-1">AI VISIBILITY SCORE</div>
+                    
+                    <div class="flex items-baseline gap-x-3">
+                        <div id="result-grade" 
+                             class="font-display text-[72px] leading-none font-bold tracking-[-3px]"></div>
+                        <div class="text-sm text-slate-400">
+                            <div id="result-appeared" class="font-medium"></div>
+                            <div class="text-[10px] text-slate-500">of 4 AI systems</div>
+                        </div>
+                    </div>
+                    
+                    <div id="result-score" class="text-sm text-slate-400 mt-1 stat"></div>
+                </div>
+
+                <!-- One line verdict -->
+                <div class="mb-6">
+                    <div class="text-sm uppercase tracking-widest text-slate-400 mb-2">VERDICT</div>
+                    <div id="result-oneline" class="text-base leading-snug text-slate-200"></div>
+                </div>
+
+                <!-- Gaps -->
+                <div class="space-y-3 mb-6">
+                    <div id="result-gap-row" class="hidden flex items-start gap-x-3 text-sm">
+                        <div class="text-amber-400 mt-0.5 flex-shrink-0">⚠️</div>
+                        <div>
+                            <span class="text-slate-400">Top gap:</span> 
+                            <span id="result-top-gap" class="text-slate-200"></span>
+                        </div>
+                    </div>
+                    
+                    <div id="result-competitor-row" class="hidden flex items-start gap-x-3 text-sm">
+                        <div class="text-red-400 mt-0.5 flex-shrink-0">🔴</div>
+                        <div>
+                            <span class="text-slate-400">Competitor cited instead:</span> 
+                            <span id="result-competitor" class="text-red-300 font-medium"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="pt-2">
+                    <a href="https://cal.com/thekapowsincompany/discovery" 
+                       target="_blank"
+                       class="block w-full text-center py-3.5 px-6 rounded-2xl bg-white text-slate-900 font-semibold hover:bg-slate-100 transition flex items-center justify-center gap-x-2 text-sm tracking-wide">
+                        📅 Book Your Full Assessment →
+                    </a>
+                    <p class="text-center text-[10px] text-slate-500 mt-2">30- or 60-minute deep dive • includes 13-model matrix + fixes</p>
+                </div>
+
+                <!-- Email capture for full breakdown -->
+                <div class="mt-5 pt-5 border-t border-slate-800">
+                    <div class="text-xs uppercase tracking-widest text-slate-400 mb-2">GET THE FULL BREAKDOWN</div>
+                    <div class="flex gap-x-2">
+                        <input type="email" id="email-capture" placeholder="your@business.com" 
+                               class="input flex-1 px-4 py-2.5 rounded-2xl text-sm">
+                        <button onclick="captureEmail()" 
+                                class="px-5 py-2.5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-sm font-medium border border-slate-700 transition">
+                            Email me
+                        </button>
+                    </div>
+                    <p id="email-status" class="text-[10px] text-emerald-400 mt-1.5 hidden">Thanks — in production this logs a lead and sends the matrix.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button onclick="resetForm()" 
+                        class="text-xs text-slate-400 hover:text-slate-300 underline-offset-2 hover:underline">
+                    Run another check →
+                </button>
+            </div>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-state" class="hidden card rounded-3xl p-6 mt-6 border border-red-900/50 bg-red-950/20">
+            <div class="flex gap-x-3">
+                <div class="text-red-400 text-xl">❌</div>
+                <div class="flex-1">
+                    <div class="font-semibold text-red-300 mb-1">Check failed</div>
+                    <div id="error-message" class="text-sm text-red-300/90"></div>
+                    <button onclick="resetForm()" class="mt-3 text-xs text-red-400 hover:text-red-300 underline">Try again</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 text-center text-[10px] text-slate-500">
+            Powered by Kapowsin • Runs Grok, Claude, DeepSeek Flash + live web search<br>
+            <span class="text-slate-600">Results are point-in-time. Same query can vary across runs.</span>
+        </div>
+    </div>
+
+    <script>
+        // Tailwind script config (already loaded)
+        function initTailwind() {
+            // Already using CDN, no extra config needed for this standalone page
+        }
+
+        const SERVER_URL = "http://localhost:8421";
+
+        function setLoading(isLoading) {
+            const formCard = document.getElementById('form-card');
+            const loading = document.getElementById('loading-state');
+            const submitBtn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+
+            if (isLoading) {
+                formCard.classList.add('hidden');
+                loading.classList.remove('hidden');
+                submitBtn.disabled = true;
+            } else {
+                loading.classList.add('hidden');
+            }
+        }
+
+        function showError(message) {
+            document.getElementById('form-card').classList.add('hidden');
+            document.getElementById('loading-state').classList.add('hidden');
+            document.getElementById('results-card').classList.add('hidden');
+            
+            const err = document.getElementById('error-state');
+            document.getElementById('error-message').textContent = message;
+            err.classList.remove('hidden');
+        }
+
+        function showResults(data) {
+            document.getElementById('form-card').classList.add('hidden');
+            document.getElementById('loading-state').classList.add('hidden');
+            document.getElementById('error-state').classList.add('hidden');
+
+            // Populate
+            document.getElementById('result-company').textContent = data.company || 'Unknown Business';
+            document.getElementById('result-location').textContent = `${data.city || ''}, ${data.state || ''}`;
+
+            const gradeEl = document.getElementById('result-grade');
+            const grade = (data.grade || 'F').toUpperCase();
+            gradeEl.textContent = grade;
+            gradeEl.className = `font-display text-[72px] leading-none font-bold tracking-[-3px] grade-${grade}`;
+
+            const appeared = data.appeared_in || 0;
+            const checked = data.models_checked || 4;
+            document.getElementById('result-appeared').textContent = `You appear in ${appeared} of ${checked}`;
+
+            const scoreEl = document.getElementById('result-score');
+            scoreEl.textContent = `Visibility score: ${data.visibility_score || 0}/100`;
+
+            document.getElementById('result-oneline').textContent = data.one_line || 'No verdict available.';
+
+            // Gaps
+            const gapRow = document.getElementById('result-gap-row');
+            const gapText = document.getElementById('result-top-gap');
+            if (data.top_gap) {
+                gapText.textContent = data.top_gap;
+                gapRow.classList.remove('hidden');
+            } else {
+                gapRow.classList.add('hidden');
+            }
+
+            const compRow = document.getElementById('result-competitor-row');
+            const compText = document.getElementById('result-competitor');
+            if (data.competitor_cited) {
+                compText.textContent = data.competitor_cited;
+                compRow.classList.remove('hidden');
+            } else {
+                compRow.classList.add('hidden');
+            }
+
+            // Show
+            document.getElementById('results-card').classList.remove('hidden');
+
+            // Clear email status
+            document.getElementById('email-status').classList.add('hidden');
+        }
+
+        async function handleSubmit(e) {
+            e.preventDefault();
+
+            const form = document.getElementById('audit-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+
+            const payload = {
+                company_name: document.getElementById('company_name').value.trim(),
+                city: document.getElementById('city').value.trim(),
+                state: document.getElementById('state').value.trim().toUpperCase(),
+                industry: document.getElementById('industry').value
+            };
+
+            if (!payload.company_name || !payload.city || !payload.state) {
+                alert("Please fill out Business Name, City, and State.");
+                return;
+            }
+
+            // UI
+            const originalBtnText = btnText.textContent;
+            btnText.textContent = "Checking...";
+            submitBtn.disabled = true;
+
+            setLoading(true);
+
+            try {
+                const res = await fetch(`${SERVER_URL}/api/citation-audit/quick`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                    // generous timeout handled by browser/fetch
+                });
+
+                if (!res.ok) {
+                    const errText = await res.text();
+                    throw new Error(`Server returned ${res.status}: ${errText}`);
+                }
+
+                const data = await res.json();
+                showResults(data);
+
+            } catch (err) {
+                console.error(err);
+                showError(`Could not complete the check. ${err.message}. Is the citation server running at ${SERVER_URL}?`);
+            } finally {
+                btnText.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        }
+
+        function captureEmail() {
+            const emailInput = document.getElementById('email-capture');
+            const status = document.getElementById('email-status');
+            const email = emailInput.value.trim();
+
+            if (!email || !email.includes('@')) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            // In real deployment: would POST to a lead capture endpoint + send email with full matrix
+            status.textContent = `Thanks — we'll send the full breakdown to ${email} (demo: logged locally).`;
+            status.classList.remove('hidden');
+            emailInput.value = '';
+            
+            // fake a small success flash
+            setTimeout(() => {
+                if (!status.classList.contains('hidden')) {
+                    // leave it visible
+                }
+            }, 1200);
+        }
+
+        function resetForm() {
+            // Hide results + error
+            document.getElementById('results-card').classList.add('hidden');
+            document.getElementById('error-state').classList.add('hidden');
+            
+            // Show form
+            const formCard = document.getElementById('form-card');
+            formCard.classList.remove('hidden');
+            
+            // Optional: keep values or clear
+            // document.getElementById('audit-form').reset();
+        }
+
+        function init() {
+            initTailwind();
+
+            const form = document.getElementById('audit-form');
+            form.addEventListener('submit', handleSubmit);
+
+            // Optional: demo prefill button (add a small link if wanted)
+            // For now, users can fill manually. Add a helper in future iteration.
+            
+            // Keyboard hint
+            console.log('%c[citation-audit] Standalone form ready. POSTs to ' + SERVER_URL, 'color:#475569');
+        }
+
+        // Pre-fill a realistic example for faster testing (comment out in prod if desired)
+        // window.addEventListener('load', () => { setTimeout(() => { if (!document.getElementById('company_name').value) { document.getElementById('company_name').value = 'Theory Real Estate'; document.getElementById('city').value = 'Tacoma'; } }, 800); });
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

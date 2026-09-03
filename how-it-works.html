@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How It Works — Kapowsin AI Chief of Staff</title>
+  <meta name="description" content="See exactly how the Kapowsin AI Chief of Staff connects your existing tools, runs overnight, and delivers a ready-to-act briefing by 6 AM." />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    @import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    :root {
+      --bg: #0a0e1a;
+      --surface: #111827;
+      --border: #374151;
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+      --text-dim: #6b7280;
+      --teal: #2dd4bf;
+      --cyan: #22d3ee;
+      --green: #34d399;
+      --accent-teal: #06b6d4;
+      --accent-green: #10b981;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Outfit", system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      font-family: "Satoshi", "Outfit", system-ui, sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(10, 14, 26, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px; max-width: 1100px; margin: 0 auto;
+    }
+    .logo {
+      font-family: "Satoshi", sans-serif; font-weight: 700;
+      font-size: 20px; color: var(--teal); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 14px; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--teal); }
+    .btn-primary {
+      background: var(--teal); color: #0a0e1a;
+      padding: 9px 20px; border-radius: 8px;
+      font-size: 13px; font-weight: 700;
+      text-decoration: none; white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+
+    /* ── Bailey Banner ── */
+    .bailey-banner {
+      background: linear-gradient(90deg, rgba(45,212,191,0.12), rgba(34,211,238,0.08));
+      border-bottom: 1px solid rgba(45,212,191,0.25);
+      padding: 12px 24px; text-align: center;
+    }
+    .bailey-banner-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .bailey-banner span { font-size: 14px; color: #e5e7eb; }
+    .bailey-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--teal); color: #0a0e1a;
+      padding: 6px 16px; border-radius: 999px;
+      font-size: 13px; font-weight: 700; text-decoration: none;
+      white-space: nowrap;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 72px 24px 40px;
+    }
+    .hero-label {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      color: var(--teal); text-transform: uppercase;
+      border: 1px solid rgba(45,212,191,0.35);
+      padding: 5px 14px; border-radius: 999px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 54px);
+      color: #f1f5f9;
+      margin: 0 auto 20px;
+      max-width: 780px;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--teal), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      color: var(--text-muted); font-size: 18px; max-width: 600px;
+      margin: 0 auto 40px; line-height: 1.7;
+    }
+
+    /* ── Three-stat bar ── */
+    .stat-bar {
+      display: flex; justify-content: center; gap: 0;
+      margin: 0 auto 56px; max-width: 640px;
+      border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden;
+    }
+    .stat {
+      flex: 1; padding: 20px 24px; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: "Satoshi", sans-serif; font-size: 28px;
+      font-weight: 900; color: var(--teal);
+    }
+    .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+    /* ── Diagram section ── */
+    .diagram-section {
+      padding: 0 24px 80px;
+    }
+    .diagram-wrap {
+      max-width: 1200px; margin: 0 auto;
+      border: 1px solid rgba(45,212,191,0.18);
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 0 80px rgba(6,182,212,0.08);
+    }
+    .diagram-wrap svg { width: 100%; height: auto; display: block; }
+
+    /* ── How it flows (3 steps) ── */
+    .steps-section {
+      padding: 80px 24px;
+      background: linear-gradient(180deg, transparent, rgba(17,24,39,0.5), transparent);
+    }
+    .steps-header {
+      text-align: center; margin-bottom: 52px;
+    }
+    .steps-header h2 { font-size: 32px; color: #f1f5f9; margin-bottom: 12px; }
+    .steps-header p { color: var(--text-muted); font-size: 16px; max-width: 500px; margin: 0 auto; }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px; max-width: 1000px; margin: 0 auto;
+    }
+    .step-card {
+      background: var(--surface);
+      border: 1px solid var(--border); border-radius: 14px;
+      padding: 32px 28px;
+    }
+    .step-num {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      color: var(--teal); text-transform: uppercase; margin-bottom: 16px;
+    }
+    .step-card h3 { font-size: 20px; color: #f1f5f9; margin-bottom: 12px; }
+    .step-card p { color: var(--text-muted); font-size: 15px; line-height: 1.65; }
+
+    /* ── CTA Section ── */
+    .cta-section {
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .cta-box {
+      max-width: 600px; margin: 0 auto;
+      background: linear-gradient(135deg, rgba(45,212,191,0.08), rgba(34,211,238,0.04));
+      border: 1px solid rgba(45,212,191,0.25);
+      border-radius: 20px; padding: 56px 48px;
+    }
+    .cta-box h2 { font-size: 30px; color: #f1f5f9; margin-bottom: 16px; }
+    .cta-box p { color: var(--text-muted); font-size: 16px; margin-bottom: 32px; line-height: 1.7; }
+    .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-outline {
+      border: 1px solid var(--border); color: var(--text-muted);
+      padding: 12px 24px; border-radius: 8px;
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+    .btn-cta {
+      background: var(--teal); color: #0a0e1a;
+      padding: 12px 28px; border-radius: 8px;
+      font-size: 14px; font-weight: 700; text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-cta:hover { opacity: 0.88; }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      color: var(--text-dim); font-size: 13px;
+    }
+    .footer a { color: var(--text-muted); text-decoration: none; }
+    .footer a:hover { color: var(--teal); }
+
+    /* ── Mobile nav ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero { padding: 48px 20px 28px; }
+      .stat-bar { flex-direction: column; border-radius: 10px; }
+      .stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat:last-child { border-bottom: none; }
+      .cta-box { padding: 40px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">Kapowsin AI</a>
+    <div class="nav-links">
+      <a href="/#journey">Journey</a>
+      <a href="/#phases">The Method</a>
+      <a href="/how-it-works.html" class="active">How It Works</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/#roi">ROI</a>
+      <a href="/#partner">Partners</a>
+    </div>
+    <a href="https://cal.com/thekapowsincompany/discovery" class="btn-primary">Book Discovery Call</a>
+  </div>
+</nav>
+
+<!-- ── Bailey Banner ── -->
+<div class="bailey-banner">
+  <div class="bailey-banner-inner">
+    <span>📞 <strong>Free Mini AI Assessment</strong> — Call Bailey and we'll find 1–3 workflows to automate today.</span>
+    <a href="tel:+12533405524" class="bailey-cta">📱 (253) 340-5524</a>
+  </div>
+</div>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-label">System Architecture</div>
+  <h1>Your AI Chief of Staff — <span>Under the Hood</span></h1>
+  <p class="hero-sub">
+    It connects to what you already use, runs while you sleep, and
+    delivers a fully briefed, action-ready workday before your alarm goes off.
+  </p>
+
+  <div class="stat-bar">
+    <div class="stat">
+      <div class="stat-num">12 AM</div>
+      <div class="stat-label">AI starts working</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">6 AM</div>
+      <div class="stat-label">Your briefing is ready</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3 clicks</div>
+      <div class="stat-label">Yes · No · Edit</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Diagram ── -->
+<section class="diagram-section">
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 1280 820" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#06b6d4"/>
+          <stop offset="100%" stop-color="#10b981"/>
+        </linearGradient>
+        <linearGradient id="tealGradV" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#06b6d4"/>
+          <stop offset="100%" stop-color="#10b981"/>
+        </linearGradient>
+        <marker id="arrowTeal" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#06b6d4"/>
+        </marker>
+        <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#10b981"/>
+        </marker>
+        <marker id="arrowMuted" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#475569"/>
+        </marker>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- Background -->
+      <rect width="1280" height="820" fill="#0a0f1a"/>
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+      </pattern>
+      <rect width="1280" height="820" fill="url(#grid)" opacity="0.4"/>
+
+      <!-- Title -->
+      <text x="640" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#e2e8f0" letter-spacing="0.5">How Your AI Chief of Staff Works</text>
+      <text x="640" y="64" text-anchor="middle" font-size="11" fill="#64748b" letter-spacing="2">KAPOWSIN BUSINESS SOLUTIONS — SYSTEM ARCHITECTURE</text>
+
+      <!-- COLUMN 1: YOUR EXISTING TOOLS -->
+      <text x="148" y="106" text-anchor="middle" font-size="13" font-weight="600" fill="#94a3b8" letter-spacing="1.5">YOUR EXISTING TOOLS</text>
+      <line x1="48" y1="116" x2="248" y2="116" stroke="#334155" stroke-width="1"/>
+
+      <rect x="48" y="140" width="200" height="72" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+      <text x="82" y="170" font-size="20">📧</text>
+      <text x="110" y="172" font-size="15" font-weight="600" fill="#e2e8f0">Email</text>
+      <text x="110" y="192" font-size="11" fill="#94a3b8">Gmail, Outlook, Yahoo</text>
+
+      <rect x="48" y="232" width="200" height="72" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+      <text x="82" y="262" font-size="20">📅</text>
+      <text x="110" y="264" font-size="15" font-weight="600" fill="#e2e8f0">Calendar</text>
+      <text x="110" y="284" font-size="11" fill="#94a3b8">Google Calendar, iCal</text>
+
+      <rect x="48" y="324" width="200" height="72" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+      <text x="82" y="354" font-size="20">👥</text>
+      <text x="110" y="356" font-size="15" font-weight="600" fill="#e2e8f0">CRM</text>
+      <text x="110" y="376" font-size="11" fill="#94a3b8">Brivity, GHL, Follow Up Boss</text>
+
+      <rect x="48" y="416" width="200" height="72" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+      <text x="82" y="446" font-size="20">🏠</text>
+      <text x="110" y="448" font-size="15" font-weight="600" fill="#e2e8f0">MLS / Market Data</text>
+      <text x="110" y="468" font-size="11" fill="#94a3b8">NWMLS, Redfin, Zillow</text>
+
+      <rect x="48" y="508" width="200" height="72" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+      <text x="82" y="538" font-size="20">📱</text>
+      <text x="110" y="540" font-size="15" font-weight="600" fill="#e2e8f0">Phone / Voicemail</text>
+      <text x="110" y="560" font-size="11" fill="#94a3b8">Inbound calls, transcripts</text>
+
+      <!-- Arrows: Tools → Engine -->
+      <line x1="248" y1="176" x2="390" y2="310" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
+      <line x1="248" y1="268" x2="390" y2="330" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
+      <line x1="248" y1="360" x2="390" y2="370" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
+      <line x1="248" y1="452" x2="390" y2="410" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
+      <line x1="248" y1="544" x2="390" y2="440" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowMuted)"/>
+
+      <!-- COLUMN 2: AI CHIEF OF STAFF ENGINE -->
+      <rect x="390" y="160" width="500" height="420" rx="16" fill="none" stroke="url(#tealGrad)" stroke-width="2.5"/>
+      <rect x="392" y="162" width="496" height="416" rx="14" fill="#0f172a"/>
+      <text x="640" y="106" text-anchor="middle" font-size="13" font-weight="600" fill="#06b6d4" letter-spacing="1.5">AI CHIEF OF STAFF ENGINE</text>
+      <line x1="490" y1="116" x2="790" y2="116" stroke="#0e4f5c" stroke-width="1"/>
+      <rect x="535" y="128" width="210" height="24" rx="12" fill="#0e3a3a"/>
+      <text x="640" y="144" text-anchor="middle" font-size="10" fill="#06b6d4" letter-spacing="1">MANAGED BY KAPOWSIN</text>
+
+      <rect x="420" y="200" width="140" height="80" rx="10" fill="#0c2d3e" stroke="#06b6d4" stroke-width="1"/>
+      <text x="490" y="232" text-anchor="middle" font-size="14" font-weight="700" fill="#06b6d4">READ</text>
+      <text x="490" y="252" text-anchor="middle" font-size="10" fill="#94a3b8">Scan emails, calendar,</text>
+      <text x="490" y="264" text-anchor="middle" font-size="10" fill="#94a3b8">CRM, MLS overnight</text>
+
+      <rect x="420" y="300" width="140" height="80" rx="10" fill="#0c2d3e" stroke="#06b6d4" stroke-width="1"/>
+      <text x="490" y="332" text-anchor="middle" font-size="14" font-weight="700" fill="#06b6d4">ANALYZE</text>
+      <text x="490" y="352" text-anchor="middle" font-size="10" fill="#94a3b8">Flag urgent items,</text>
+      <text x="490" y="364" text-anchor="middle" font-size="10" fill="#94a3b8">score leads, find gaps</text>
+
+      <rect x="420" y="400" width="140" height="80" rx="10" fill="#0c2d3e" stroke="#06b6d4" stroke-width="1"/>
+      <text x="490" y="432" text-anchor="middle" font-size="14" font-weight="700" fill="#06b6d4">ACT</text>
+      <text x="490" y="452" text-anchor="middle" font-size="10" fill="#94a3b8">Draft responses,</text>
+      <text x="490" y="464" text-anchor="middle" font-size="10" fill="#94a3b8">schedule, follow up</text>
+
+      <line x1="490" y1="280" x2="490" y2="300" stroke="#06b6d4" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+      <line x1="490" y1="380" x2="490" y2="400" stroke="#06b6d4" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+
+      <rect x="590" y="200" width="140" height="80" rx="10" fill="#132a1e" stroke="#10b981" stroke-width="1"/>
+      <text x="660" y="228" text-anchor="middle" font-size="13" font-weight="700" fill="#10b981">KNOWLEDGE</text>
+      <text x="660" y="244" text-anchor="middle" font-size="13" font-weight="700" fill="#10b981">VAULT</text>
+      <text x="660" y="264" text-anchor="middle" font-size="10" fill="#94a3b8">Your business rules,</text>
+      <text x="660" y="276" text-anchor="middle" font-size="10" fill="#94a3b8">contacts, preferences</text>
+
+      <rect x="590" y="300" width="140" height="80" rx="10" fill="#132a1e" stroke="#10b981" stroke-width="1"/>
+      <text x="660" y="332" text-anchor="middle" font-size="13" font-weight="700" fill="#10b981">MEMORY</text>
+      <text x="660" y="352" text-anchor="middle" font-size="10" fill="#94a3b8">Learns your voice,</text>
+      <text x="660" y="364" text-anchor="middle" font-size="10" fill="#94a3b8">remembers every detail</text>
+
+      <rect x="590" y="400" width="140" height="80" rx="10" fill="#132a1e" stroke="#10b981" stroke-width="1"/>
+      <text x="660" y="432" text-anchor="middle" font-size="13" font-weight="700" fill="#10b981">SKILLS</text>
+      <text x="660" y="452" text-anchor="middle" font-size="10" fill="#94a3b8">Market intel, CRM sync,</text>
+      <text x="660" y="464" text-anchor="middle" font-size="10" fill="#94a3b8">lead scoring, reports</text>
+
+      <line x1="560" y1="240" x2="590" y2="240" stroke="#1e4a4a" stroke-width="1" stroke-dasharray="4 3"/>
+      <line x1="560" y1="340" x2="590" y2="340" stroke="#1e4a4a" stroke-width="1" stroke-dasharray="4 3"/>
+      <line x1="560" y1="440" x2="590" y2="440" stroke="#1e4a4a" stroke-width="1" stroke-dasharray="4 3"/>
+
+      <rect x="760" y="310" width="120" height="56" rx="8" fill="#1a1a2e" stroke="#475569" stroke-width="1"/>
+      <text x="820" y="332" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8">MODEL ROUTING</text>
+      <text x="820" y="348" text-anchor="middle" font-size="9" fill="#64748b">Claude · Grok · Gemini</text>
+      <text x="820" y="360" text-anchor="middle" font-size="9" fill="#64748b">Right model, right task</text>
+
+      <line x1="730" y1="340" x2="760" y2="340" stroke="#475569" stroke-width="1" stroke-dasharray="4 3"/>
+
+      <!-- Arrows: Engine → Outputs -->
+      <line x1="890" y1="310" x2="960" y2="176" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+      <line x1="890" y1="330" x2="960" y2="268" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+      <line x1="890" y1="370" x2="960" y2="360" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+      <line x1="890" y1="410" x2="960" y2="452" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+      <line x1="890" y1="440" x2="960" y2="544" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+      <!-- COLUMN 3: WHAT YOU SEE -->
+      <text x="1088" y="106" text-anchor="middle" font-size="13" font-weight="600" fill="#10b981" letter-spacing="1.5">WHAT YOU SEE BY 6 AM</text>
+      <line x1="968" y1="116" x2="1208" y2="116" stroke="#1e4a3a" stroke-width="1"/>
+
+      <rect x="968" y="140" width="220" height="72" rx="8" fill="#132a1e" stroke="#10b981" stroke-width="1.5"/>
+      <text x="1002" y="170" font-size="20">☀️</text>
+      <text x="1030" y="172" font-size="15" font-weight="600" fill="#e2e8f0">Morning Briefing</text>
+      <text x="1030" y="192" font-size="11" fill="#94a3b8">Today's priorities, ready to go</text>
+
+      <rect x="968" y="232" width="220" height="72" rx="8" fill="#132a1e" stroke="#10b981" stroke-width="1.5"/>
+      <text x="1002" y="262" font-size="20">🎯</text>
+      <text x="1030" y="264" font-size="15" font-weight="600" fill="#e2e8f0">Lead Follow-Up</text>
+      <text x="1030" y="284" font-size="11" fill="#94a3b8">Drafted in your voice, ready to send</text>
+
+      <rect x="968" y="324" width="220" height="72" rx="8" fill="#132a1e" stroke="#10b981" stroke-width="1.5"/>
+      <text x="1002" y="354" font-size="20">📋</text>
+      <text x="1030" y="356" font-size="15" font-weight="600" fill="#e2e8f0">Schedule Management</text>
+      <text x="1030" y="376" font-size="11" fill="#94a3b8">Conflicts flagged, gaps filled</text>
+
+      <rect x="968" y="416" width="220" height="72" rx="8" fill="#132a1e" stroke="#10b981" stroke-width="1.5"/>
+      <text x="1002" y="446" font-size="20">📊</text>
+      <text x="1030" y="448" font-size="15" font-weight="600" fill="#e2e8f0">Market Intel</text>
+      <text x="1030" y="468" font-size="11" fill="#94a3b8">New listings, price changes, comps</text>
+
+      <rect x="968" y="508" width="220" height="72" rx="8" fill="#132a1e" stroke="#10b981" stroke-width="1.5"/>
+      <text x="1002" y="538" font-size="20">📑</text>
+      <text x="1030" y="540" font-size="15" font-weight="600" fill="#e2e8f0">Transaction Tracking</text>
+      <text x="1030" y="560" font-size="11" fill="#94a3b8">Deadlines, docs, status updates</text>
+
+      <!-- Bottom: THE HUMAN ELEMENT -->
+      <line x1="48" y1="630" x2="1232" y2="630" stroke="#1e293b" stroke-width="1"/>
+      <text x="640" y="665" text-anchor="middle" font-size="16" font-weight="700" fill="#e2e8f0">Your Only Job</text>
+
+      <rect x="310" y="690" width="160" height="70" rx="12" fill="#0c2d3e" stroke="#06b6d4" stroke-width="2"/>
+      <text x="390" y="722" text-anchor="middle" font-size="22" font-weight="800" fill="#06b6d4">YES</text>
+      <text x="390" y="744" text-anchor="middle" font-size="11" fill="#94a3b8">Approve and send</text>
+
+      <rect x="560" y="690" width="160" height="70" rx="12" fill="#1a1a2e" stroke="#475569" stroke-width="2"/>
+      <text x="640" y="722" text-anchor="middle" font-size="22" font-weight="800" fill="#94a3b8">NO</text>
+      <text x="640" y="744" text-anchor="middle" font-size="11" fill="#64748b">Skip or override</text>
+
+      <rect x="810" y="690" width="160" height="70" rx="12" fill="#132a1e" stroke="#10b981" stroke-width="2"/>
+      <text x="890" y="722" text-anchor="middle" font-size="22" font-weight="800" fill="#10b981">EDIT</text>
+      <text x="890" y="744" text-anchor="middle" font-size="11" fill="#94a3b8">Adjust and approve</text>
+
+      <text x="640" y="796" text-anchor="middle" font-size="12" fill="#475569" letter-spacing="1">THE AI WORKS BEFORE YOU WAKE UP. YOU JUST APPROVE THE OUTPUT.</text>
+
+      <rect x="48" y="640" width="90" height="28" rx="14" fill="#0c2d3e" stroke="#06b6d4" stroke-width="1"/>
+      <text x="93" y="659" text-anchor="middle" font-size="11" font-weight="600" fill="#06b6d4">12 AM – 6 AM</text>
+
+      <rect x="248" y="640" width="130" height="28" rx="14" fill="none" stroke="#334155" stroke-width="1"/>
+      <text x="313" y="659" text-anchor="middle" font-size="11" fill="#64748b">AI runs overnight</text>
+
+      <rect x="1100" y="640" width="132" height="28" rx="14" fill="#132a1e" stroke="#10b981" stroke-width="1"/>
+      <text x="1166" y="659" text-anchor="middle" font-size="11" font-weight="600" fill="#10b981">6 AM — You're ready</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ── Three Steps ── -->
+<section class="steps-section">
+  <div class="container">
+    <div class="steps-header">
+      <h2>Three Phases, One Seamless System</h2>
+      <p>No new logins. No new habits. It plugs into what you already use.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">Phase 01 — Midnight to 4 AM</div>
+        <h3>The AI Reads Everything</h3>
+        <p>While you sleep, the system scans your email, calendar, CRM, and MLS data. It flags what's urgent, scores your leads, and surfaces anything that needs your attention — before you wake up.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">Phase 02 — 4 AM to 6 AM</div>
+        <h3>It Builds Your Workday</h3>
+        <p>Every output is drafted in your voice using your Second Brain — your business rules, client preferences, and follow-up history. Lead responses, schedule blocks, market updates, transaction flags. All written. All ready.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">Phase 03 — You're Up</div>
+        <h3>You Approve. It Executes.</h3>
+        <p>Your only job is Yes, No, or Edit. Everything else happened already. The AI ran your ops overnight so your 6 AM starts where most people's noon ends.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="cta-box">
+    <h2>Ready to See It in Your Business?</h2>
+    <p>
+      Start with a free mini-assessment. We'll map exactly which workflows
+      the AI can run for you — and what your mornings look like after.
+    </p>
+    <div class="cta-buttons">
+      <a href="tel:+12533405524" class="btn-outline">📞 Call Bailey Free</a>
+      <a href="https://cal.com/thekapowsincompany/discovery" class="btn-cta">Book Discovery Call →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── */
+<footer class="footer">
+  <div>Kapowsin Business Solutions LLC • <a href="https://thekapowsincompany.com">thekapowsincompany.com</a></div>
+  <div style="margin-top:8px;">
+    <a href="/">Home</a> &nbsp;·&nbsp;
+    <a href="/pricing.html">Pricing</a> &nbsp;·&nbsp;
+    <a href="/how-it-works.html">How It Works</a> &nbsp;·&nbsp;
+    <a href="https://cal.com/thekapowsincompany/discovery">Book a Call</a>
+  </div>
+</footer>
+
+</body>
+</html>

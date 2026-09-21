@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jesse Lee × Kapowsin AI — Your AI Operations Department</title>
+  <meta name="description" content="A visual breakdown of Kapowsin's AI Operations system built specifically for The Inspire Group, your PM company, and your holdings." />
+  <meta name="robots" content="noindex" />
+  <style>
+    @import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+    :root{--bg:#0a0e1a;--surface:#111827;--surface2:#0d1520;--border:#374151;--text:#e5e7eb;--muted:#9ca3af;--dim:#6b7280;--teal:#2dd4bf;--cyan:#22d3ee;--green:#34d399;--amber:#fbbf24;--purple:#a78bfa;--rose:#fb7185;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;line-height:1.6;}
+    /* NAV */
+    nav{position:sticky;top:0;z-index:100;background:rgba(10,14,26,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;}
+    .nav-brand{font-family:'Satoshi',sans-serif;font-weight:700;font-size:1.1rem;background:linear-gradient(135deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .nav-links{display:flex;gap:2rem;}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .2s;}
+    .nav-links a:hover{color:var(--teal);}
+    /* HERO */
+    .hero{padding:6rem 2rem;text-align:center;max-width:920px;margin:0 auto;}
+    .hero-badge{display:inline-block;padding:.35rem 1rem;border:1px solid var(--teal);border-radius:999px;font-size:.78rem;color:var(--teal);margin-bottom:1.5rem;font-family:'JetBrains Mono',monospace;}
+    .hero h1{font-family:'Satoshi',sans-serif;font-size:clamp(2.4rem,6vw,4rem);font-weight:900;line-height:1.08;background:linear-gradient(135deg,#fff 0%,var(--cyan) 55%,var(--green) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1.25rem;}
+    .hero p{font-size:1.15rem;color:var(--muted);max-width:620px;margin:0 auto 2.5rem;}
+    .stat-row{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;margin-top:2.5rem;}
+    .stat .num{font-family:'Satoshi',sans-serif;font-size:2.4rem;font-weight:900;background:linear-gradient(135deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .stat .lbl{font-size:.82rem;color:var(--dim);margin-top:.2rem;}
+    /* SECTIONS */
+    section{padding:5rem 2rem;}
+    .inner{max-width:1100px;margin:0 auto;}
+    .s-label{font-family:'JetBrains Mono',monospace;font-size:.73rem;color:var(--cyan);text-transform:uppercase;letter-spacing:.15em;margin-bottom:.75rem;}
+    .s-title{font-family:'Satoshi',sans-serif;font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;margin-bottom:.75rem;}
+    .s-desc{color:var(--muted);max-width:600px;margin-bottom:2.5rem;}
+    /* PROBLEM CARDS */
+    .prob-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.5rem;margin-top:2rem;}
+    .prob-card{background:var(--surface);border:1px solid rgba(251,113,133,.3);border-radius:12px;padding:1.5rem;}
+    .prob-card .ico{font-size:1.7rem;margin-bottom:.75rem;}
+    .prob-card h4{font-weight:600;margin-bottom:.4rem;color:var(--rose);font-size:.95rem;}
+    .prob-card p{font-size:.85rem;color:var(--muted);}
+    /* BIZ CARDS */
+    .biz-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:2rem;margin-top:2rem;}
+    .biz-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;position:relative;overflow:hidden;}
+    .biz-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+    .bk::before{background:linear-gradient(90deg,var(--cyan),var(--teal));}
+    .pm::before{background:linear-gradient(90deg,var(--green),var(--teal));}
+    .ho::before{background:linear-gradient(90deg,var(--purple),var(--cyan));}
+    .biz-card .bico{font-size:1.9rem;margin-bottom:1rem;}
+    .biz-card h3{font-family:'Satoshi',sans-serif;font-weight:700;font-size:1.2rem;margin-bottom:.2rem;}
+    .biz-sub{font-size:.73rem;color:var(--dim);margin-bottom:1.25rem;font-family:'JetBrains Mono',monospace;}
+    .agents{display:flex;flex-direction:column;gap:.65rem;}
+    .chip{display:flex;align-items:center;gap:.7rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.55rem .8rem;}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;box-shadow:0 0 5px var(--green);}
+    .chip-text{font-size:.83rem;}
+    .chip-tag{margin-left:auto;font-size:.68rem;font-family:'JetBrains Mono',monospace;color:var(--dim);}
+    .biz-val{margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border);font-size:.83rem;color:var(--cyan);}
+    /* PRICING */
+    .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.5rem;}
+    @media(max-width:680px){.price-grid{grid-template-columns:1fr;}}
+    .p-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;position:relative;}
+    .p-card.feat{border-color:var(--teal);box-shadow:0 0 30px rgba(45,212,191,.1);}
+    .p-card .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--cyan),var(--green));color:#0a0e1a;font-size:.68rem;font-weight:700;padding:.22rem 1rem;border-radius:999px;white-space:nowrap;}
+    .p-card h3{font-family:'Satoshi',sans-serif;font-weight:700;font-size:1.2rem;margin-bottom:.4rem;}
+    .p-price{font-size:2.4rem;font-weight:700;font-family:'Satoshi',sans-serif;color:var(--cyan);line-height:1;margin:.9rem 0;}
+    .p-price span{font-size:.9rem;color:var(--muted);}
+    .p-desc{font-size:.88rem;color:var(--muted);margin-bottom:1.5rem;}
+    .p-items{list-style:none;display:flex;flex-direction:column;gap:.7rem;}
+    .p-items li{display:flex;gap:.7rem;font-size:.88rem;align-items:flex-start;}
+    .p-items li::before{content:'→';color:var(--teal);flex-shrink:0;}
+    /* TABLE */
+    .btable{width:100%;border-collapse:collapse;margin-top:2rem;}
+    .btable th{text-align:left;padding:.9rem 1rem;background:var(--surface);border-bottom:1px solid var(--border);font-size:.75rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;}
+    .btable td{padding:.9rem 1rem;border-bottom:1px solid var(--border);font-size:.88rem;vertical-align:top;}
+    .btable tr:last-child td{border-bottom:none;}
+    .btable .pc{color:var(--cyan);font-weight:600;font-family:'JetBrains Mono',monospace;white-space:nowrap;}
+    .chip-h{display:inline-block;padding:.2rem .55rem;border-radius:4px;font-size:.7rem;font-family:'JetBrains Mono',monospace;}
+    .ch-g{background:rgba(52,211,153,.15);color:var(--green);}
+    .ch-a{background:rgba(251,191,36,.15);color:var(--amber);}
+    .ch-c{background:rgba(251,113,133,.15);color:var(--rose);}
+    /* STEPS */
+    .step-row{display:flex;flex-direction:column;gap:1.25rem;max-width:720px;margin-top:2rem;}
+    .step{display:flex;gap:1.25rem;align-items:flex-start;}
+    .step-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0;color:#0a0e1a;}
+    /* CTA */
+    .cta-wrap{padding:6rem 2rem;text-align:center;}
+    .cta-box{max-width:700px;margin:0 auto;background:linear-gradient(135deg,rgba(34,211,238,.06),rgba(52,211,153,.06));border:1px solid rgba(45,212,191,.3);border-radius:20px;padding:3.5rem 2.5rem;}
+    .cta-box h2{font-family:'Satoshi',sans-serif;font-weight:900;font-size:2rem;margin-bottom:1rem;}
+    .cta-box p{color:var(--muted);margin-bottom:2rem;}
+    .cta-btn{display:inline-block;padding:.85rem 2.5rem;background:linear-gradient(135deg,var(--cyan),var(--green));color:#0a0e1a;font-weight:700;border-radius:10px;text-decoration:none;font-size:1rem;}
+    .cta-meta{margin-top:1.5rem;font-size:.82rem;color:var(--dim);}
+    footer{padding:2rem;text-align:center;color:var(--dim);font-size:.78rem;border-top:1px solid var(--border);}
+    @media(max-width:600px){nav .nav-links{display:none;}.hero{padding:4rem 1.5rem;}section{padding:3rem 1.5rem;}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Kapowsin AI</div>
+  <div class="nav-links">
+    <a href="#businesses">Your Businesses</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#builds">Build Menu</a>
+    <a href="#path">Next Steps</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📋 Prepared for Jesse Lee · September 2026</div>
+  <h1>Your AI Operations Department</h1>
+  <p>Three businesses. One inbox. Zero AI layer. We eliminate you as the bottleneck — without adding headcount.</p>
+  <div class="stat-row">
+    <div class="stat"><div class="num">182</div><div class="lbl">PM Units Managed</div></div>
+    <div class="stat"><div class="num">80+</div><div class="lbl">Brokerage Agents</div></div>
+    <div class="stat"><div class="num">15 hrs</div><div class="lbl">Recovered / Week</div></div>
+    <div class="stat"><div class="num">$14.5K</div><div class="lbl">Monthly Value Returned</div></div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section style="background:var(--surface);">
+  <div class="inner">
+    <div class="s-label">Current State</div>
+    <div class="s-title">Where The System Is Breaking</div>
+    <div class="s-desc">Every task, every contractor question, every lease renewal across three companies lands in one inbox — yours — with no triage, no routing, and no AI layer.</div>
+    <div class="prob-grid">
+      <div class="prob-card"><div class="ico">📥</div><h4>One Inbox, Three Businesses</h4><p>Brokerage, PM, and holdings all route through your personal email. Admin gets task assignments via text. Nothing filtered or prioritized.</p></div>
+      <div class="prob-card"><div class="ico">⚠️</div><h4>180-Day Compliance Risk</h4><p>WA State requires 180 days written notice on lease non-renewals for your 140 WA properties — managed manually. One miss = legal liability.</p></div>
+      <div class="prob-card"><div class="ico">🧠</div><h4>$2M+ Debt In Your Head</h4><p>No real-time financial dashboard. Portfolio debt and equity is tracked mentally — not systematically. That's a single point of failure.</p></div>
+      <div class="prob-card"><div class="ico">🤹</div><h4>You're The Switchboard</h4><p>Patrick handles brokerage day-to-day, but PM and holdings still route through you. Every contractor update, every tenant question.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESSES -->
+<section id="businesses">
+  <div class="inner">
+    <div class="s-label">Solution</div>
+    <div class="s-title">Four AI Agents. Three Businesses. One System.</div>
+    <div class="s-desc">Each agent has a job title, a scope, and runs 24/7. To you and your team, it looks like a staffed department. To us, it's software running on your behalf.</div>
+    <div class="biz-grid">
+
+      <div class="biz-card bk">
+        <div class="bico">🏢</div>
+        <h3>The Inspire Group</h3>
+        <div class="biz-sub">BROKERAGE · 80 AGENTS · PATRICK RUNS OPS</div>
+        <div class="agents">
+          <div class="chip"><div class="dot"></div><div class="chip-text">Brokerage Ops Agent</div><div class="chip-tag">24/7</div></div>
+          <div class="chip"><div class="dot"></div><div class="chip-text">AI Marketing Searchability Engine</div><div class="chip-tag">AEO</div></div>
+          <div class="chip"><div class="dot"></div><div class="chip-text">Agent Support Routing → Patrick</div><div class="chip-tag">SLACK</div></div>
+        </div>
+        <div class="biz-val">↗ Freed from 80-agent support. Patrick runs the floor. AI handles the routing.</div>
+      </div>
+
+      <div class="biz-card pm">
+        <div class="bico">🏘️</div>
+        <h3>Property Management Co.</h3>
+        <div class="biz-sub">182 UNITS · 140 WA · COMPLIANCE CRITICAL</div>
+        <div class="agents">
+          <div class="chip"><div class="dot"></div><div class="chip-text">Lease Compliance Agent (180-day WA)</div><div class="chip-tag">CRITICAL</div></div>
+          <div class="chip"><div class="dot"></div><div class="chip-text">PM Ops Agent (contractors, work orders)</div><div class="chip-tag">24/7</div></div>
+          <div class="chip"><div class="dot"></div><div class="chip-text">AI Owner Reporting System</div><div class="chip-tag">MONTHLY</div></div>
+        </div>
+        <div class="biz-val">↗ 180-day notices automated. Owner reports in seconds, not hours.</div>
+      </div>
+
+      <div class="biz-card ho">
+        <div class="bico">📊</div>
+        <h3>Holdings / Acquisitions</h3>
+        <div class="biz-sub">PORTFOLIO · MULTI-STATE · DEBT TRACKING</div>
+        <div class="agents">
+          <div class="chip"><div class="dot"></div><div class="chip-text">Financial Command Center</div><div class="chip-tag">LIVE</div></div>
+          <div class="chip"><div class="dot"></div><div class="chip-text">Acquisition Pipeline Intelligence</div><div class="chip-tag">AI</div></div>
+          <div class="chip"><div class="dot"></div><div class="chip-text">Permit Tracking Board</div><div class="chip-tag">NOTION</div></div>
+        </div>
+        <div class="biz-val">↗ $2M+ portfolio visible at a glance. No more mental accounting.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" style="background:var(--surface);">
+  <div class="inner">
+    <div class="s-label">Investment</div>
+    <div class="s-title">Two Ways to Engage</div>
+    <div class="s-desc">Build exactly what you need now, or let us run your full AI department on a flat monthly fee. Both paths recover your time immediately.</div>
+    <div class="price-grid">
+
+      <div class="p-card">
+        <h3>Price Per Build</h3>
+        <div class="p-price">$1,500–$12,000 <span>per build</span></div>
+        <div class="p-desc">Pay for exactly what you want. Start with the highest-risk item (180-day compliance engine) and stack builds as you see value.</div>
+        <ul class="p-items">
+          <li>Choose your starting build from the menu below</li>
+          <li>Fixed scope, fixed price, clear timeline</li>
+          <li>Each build is standalone — works immediately on delivery</li>
+          <li>Add Care Plan ($99–$299/mo) for ongoing support</li>
+          <li>Builds stack — add more over time as you see ROI</li>
+        </ul>
+      </div>
+
+      <div class="p-card feat">
+        <div class="badge">⭐ RECOMMENDED FOR YOUR SCALE</div>
+        <h3>Fractional AI Officer</h3>
+        <div class="p-price">$3,500 <span>/mo + $5,000 setup</span></div>
+        <div class="p-desc">We become your outsourced AI Operations Department. All 4 agents, all 3 businesses, running 24/7 on one flat monthly fee.</div>
+        <ul class="p-items">
+          <li>All 4 specialized agents deployed across all 3 businesses</li>
+          <li>Unlimited minor updates and optimizations each month</li>
+          <li>Monthly strategy call + performance report</li>
+          <li>Priority support — same-day response</li>
+          <li>New quick wins added quarterly at no extra cost</li>
+          <li style="color:var(--teal)">vs. One full-time ops hire: $55–70K/yr + benefits + turnover risk</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BUILD MENU -->
+<section id="builds">
+  <div class="inner">
+    <div class="s-label">A La Carte Build Menu</div>
+    <div class="s-title">Exact Costs, Timelines & Impact</div>
+    <div class="s-desc">If you go the per-build route, here's what each item returns vs. what it costs.</div>
+    <table class="btable">
+      <thead>
+        <tr><th>Build</th><th>Targets</th><th>Cost</th><th>Timeline</th><th>Impact</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>WA 180-Day Lease Compliance Engine</strong><br><span style="color:var(--dim);font-size:.8rem">Auto-detects non-renewals, calendar alerts, owner notifications. Fixes your #1 legal exposure.</span></td>
+          <td>PM</td><td class="pc">$2,500</td><td>5–7 days</td><td><span class="chip-h ch-c">CRITICAL</span></td>
+        </tr>
+        <tr>
+          <td><strong>Email Triage + Routing Agent</strong><br><span style="color:var(--dim);font-size:.8rem">Routes all 3 companies' email to the right Slack channel or person automatically.</span></td>
+          <td>All 3</td><td class="pc">$3,000</td><td>7–10 days</td><td><span class="chip-h ch-g">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><strong>Slack Architecture + Task Assignment System</strong><br><span style="color:var(--dim);font-size:.8rem">Eliminates text-message task pipeline. Admin works in Slack, not your DMs.</span></td>
+          <td>All 3</td><td class="pc">$1,500</td><td>2–3 days</td><td><span class="chip-h ch-g">QUICK WIN</span></td>
+        </tr>
+        <tr>
+          <td><strong>Contractor + Permit Tracking Dashboard</strong><br><span style="color:var(--dim);font-size:.8rem">Centralized board with status, deadlines, photo logging, and contractor reminders.</span></td>
+          <td>PM / Holdings</td><td class="pc">$2,250</td><td>5 days</td><td><span class="chip-h ch-a">MEDIUM</span></td>
+        </tr>
+        <tr>
+          <td><strong>Financial Command Center</strong><br><span style="color:var(--dim);font-size:.8rem">Real-time debt tracker and portfolio dashboard. Replace mental accounting with a live screen.</span></td>
+          <td>Holdings</td><td class="pc">$3,500</td><td>10–14 days</td><td><span class="chip-h ch-g">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><strong>AI Owner Reporting System</strong><br><span style="color:var(--dim);font-size:.8rem">Beautiful monthly PM reports auto-generated. Replaces manual Gamma/spreadsheet work.</span></td>
+          <td>PM</td><td class="pc">$3,500</td><td>10–14 days</td><td><span class="chip-h ch-a">MEDIUM</span></td>
+        </tr>
+        <tr>
+          <td><strong>Full AI Department (4 Specialized Agents)</strong><br><span style="color:var(--dim);font-size:.8rem">Email Triage Agent, Lease Compliance Agent, PM Ops Agent, Brokerage Ops Agent — all 24/7.</span></td>
+          <td>All 3</td><td class="pc">$12,000</td><td>3–4 weeks</td><td><span class="chip-h ch-g">FULL STACK</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1rem;font-size:.82rem;color:var(--dim);">* All builds include documentation, team training, and a 2-week support window. Care Plans available at $99–$299/mo for ongoing support.</p>
+  </div>
+</section>
+
+<!-- RECOMMENDED PATH -->
+<section id="path" style="background:var(--surface);">
+  <div class="inner">
+    <div class="s-label">Recommended Sequence</div>
+    <div class="s-title">The 30-Day Launch Path</div>
+    <div class="s-desc">Regardless of which pricing model you choose, here's the order that recovers value fastest and eliminates your highest risks first.</div>
+    <div class="step-row">
+      <div class="step">
+        <div class="step-num" style="background:linear-gradient(135deg,var(--rose),var(--amber));">1</div>
+        <div><strong>Week 1 — Lease Compliance Engine</strong><p style="font-size:.88rem;color:var(--muted);margin-top:.25rem;">Highest legal risk in your portfolio. One missed 180-day notice on any of your 140 WA properties creates real liability. This gets fixed in the first week — immediately.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:linear-gradient(135deg,var(--cyan),var(--teal));">2</div>
+        <div><strong>Weeks 1–2 — Slack Architecture + Email Triage</strong><p style="font-size:.88rem;color:var(--muted);margin-top:.25rem;">Forces all three businesses to route tasks through structured channels. You stop being the human router. Your inbox goes from chaos to quiet.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:linear-gradient(135deg,var(--green),var(--teal));">3</div>
+        <div><strong>Month 1 — Financial Dashboard + Owner Reporting</strong><p style="font-size:.88rem;color:var(--muted);margin-top:.25rem;">Your $2M+ portfolio visible in a single screen. Monthly owner reports generated automatically — no more manual Gamma work or spreadsheet formatting.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:linear-gradient(135deg,var(--purple),var(--cyan));">4</div>
+        <div><strong>Month 2+ — Full AI Department</strong><p style="font-size:.88rem;color:var(--muted);margin-top:.25rem;">All four specialized agents running 24/7 across all three businesses. This is when the Fractional AI Officer model pays for itself vs. building piece by piece.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <div class="cta-box">
+    <h2>Ready to Remove Yourself as the Bottleneck?</h2>
+    <p>The WA lease compliance engine takes 5–7 days to deploy. That's your highest-risk item — and it gets fixed first. Let's start there.</p>
+    <a href="mailto:info@thekapowsincompany.com?subject=Jesse Lee — AI Ops Proposal — Ready to Start&body=Hi Tony, I'd like to move forward." class="cta-btn">Let's Get Started →</a>
+    <div class="cta-meta">Tony Sagastizado · AI Chief of Staff · Kapowsin Business Solutions<br>(253) 240-4889 · info@thekapowsincompany.com</div>
+  </div>
+</div>
+
+<footer>© 2026 Kapowsin Business Solutions LLC · Confidential — Prepared for Jesse Lee · The Inspire Group</footer>
+
+</body>
+</html>
